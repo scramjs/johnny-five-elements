@@ -1,1 +1,37 @@
+<dom-module id="rasp-led">
+    <template>
+    </template>
 
+    <script>
+        const jFive = require('johnny-five');
+        const Raspio = require('raspi-io');
+        const board = new jFive.Board({
+            is: new Raspio();
+        });
+
+        class RaspLED {
+            beforeRegister() {
+                this.is = 'rasp-led';
+                this.properties = {
+                    pin: {
+                        observer: 'initLED'
+                    },
+                    on: {
+                        type: Boolean,
+                        observer: 'onChanged'
+                    }
+                };
+            }
+
+            initLED() {
+                this.LED = new jFive.Led(this.pin);
+            }
+
+            onChanged() {
+                this.on === true ? this.LED.on() : this.LED.off();
+            }
+        }
+
+        Polymer(RaspLED);
+    </script>
+</dom-module>

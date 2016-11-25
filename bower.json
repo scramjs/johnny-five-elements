@@ -1,0 +1,19 @@
+{
+  "name": "raspberry-web-components",
+  "description": "This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.",
+  "authors": [
+    "Jordan Last <jordan.michael.last@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scramjs/raspberry-web-components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "^1.7.0"
+  }
+}
