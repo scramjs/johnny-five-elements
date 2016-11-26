@@ -17,8 +17,9 @@
 
                 this.jFive = require('johnny-five');
                 const Raspio = require('raspi-io');
-                const board = new jFive.Board({
-                    io: new Raspio()
+                const board = new this.jFive.Board({
+                    io: new Raspio(),
+                    repl: false
                 });
             }
 
@@ -27,7 +28,7 @@
             }
 
             onChanged() {
-                this.on === true ? this.LED.on() : this.LED.off();
+                this.on ? this.LED.on() : this.LED.off();
             }
         }
 
