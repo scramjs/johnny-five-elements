@@ -20,9 +20,16 @@ This repository contains experimental web components meant to be used with Raspb
 
 ```
 bower install --save raspberry-web-components
+npm install --save johnny-five raspi-io
 ```
 
 ## Use
+
+You must be the root user while using these components:
+```
+sudo su
+```
+Then you can call your Node.js program.
 
 * Install scram-engine
 * Create `index.html` file
@@ -31,3 +38,6 @@ bower install --save raspberry-web-components
 ## Acknowledgements
 
 Raspberry Pi is a trademark of the Raspberry Pi Foundation
+
+Node.js is a trademark of Joyent, Inc. and is used with its permission. We are not endorsed by or
+affiliated with Joyent.
