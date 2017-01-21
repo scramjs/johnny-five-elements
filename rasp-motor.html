@@ -15,12 +15,8 @@
                     },
                     speed: {
                         type: Number,
-                        value: 255
-                    },
-                    forward: {
-                        type: Boolean,
-                        value: true,
-                        observer: 'forwardChanged'
+                        value: 255,
+                        observer: 'speedChanged'
                     },
                     reverse: {
                         type: Boolean,
@@ -43,16 +39,23 @@
 
             onChanged() {
                 if (this.on) {
-                    }
-                this.on ? this.motor.start(255) : this.motor.stop();
+                    this.refreshMotor();
+                }
+                else {
+                    this.motor.stop();
+                }
             }
 
-            forwardChanged() {
-                this.forward ? this.motor.forward(255) : this.motor.reverse(255);
+            speedChanged() {
+                this.refreshMotor();
             }
 
             reverseChanged() {
-                this.reverse ? this.motor.reverse(255) : this.motor.forward(255);
+                this.refreshMotor();
+            }
+
+            refreshMotor() {
+                this.reverse ? this.motor.reverse(this.speed) : this.motor.forward(this.speed);
             }
         }
 
