@@ -13,12 +13,18 @@
                         type: Boolean,
                         observer: 'onChanged'
                     },
+                    speed: {
+                        type: Number,
+                        value: 255
+                    },
                     forward: {
                         type: Boolean,
+                        value: true,
                         observer: 'forwardChanged'
                     },
                     reverse: {
                         type: Boolean,
+                        value: false,
                         observer: 'reverseChanged'
                     }
                 };
@@ -36,6 +42,8 @@
             }
 
             onChanged() {
+                if (this.on) {
+                    }
                 this.on ? this.motor.start(255) : this.motor.stop();
             }
 
