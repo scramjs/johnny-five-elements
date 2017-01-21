@@ -25,6 +25,9 @@ npm install --save johnny-five raspi-io
 
 ## Use
 
+Use the following pin layout. I'll describe in more detail the pin layouts in the future:
+http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o
+
 You must be the root user while using these components:
 ```
 sudo su
