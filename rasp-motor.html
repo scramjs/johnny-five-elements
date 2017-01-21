@@ -12,6 +12,14 @@
                     on: {
                         type: Boolean,
                         observer: 'onChanged'
+                    },
+                    forward: {
+                        type: Boolean,
+                        observer: 'forwardChanged'
+                    },
+                    reverse: {
+                        type: Boolean,
+                        observer: 'reverseChanged'
                     }
                 };
 
@@ -29,6 +37,14 @@
 
             onChanged() {
                 this.on ? this.motor.start(255) : this.motor.stop();
+            }
+
+            forwardChanged() {
+                this.forward ? this.motor.forward(255) : this.motor.reverse(255);
+            }
+
+            reverseChanged() {
+                this.reverse ? this.motor.reverse(255) : this.motor.forward(255);
             }
         }
 
