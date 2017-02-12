@@ -1,12 +1,12 @@
 {
   "name": "jfive-web-components",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/scramjs/raspberry-web-components",
+  "homepage": "https://github.com/scramjs/jfive-web-components",
   "ignore": [
     "**/.*",
     "node_modules",
