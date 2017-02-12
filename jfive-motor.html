@@ -6,8 +6,14 @@
             beforeRegister() {
                 this.is = 'rasp-motor';
                 this.properties = {
-                    pin: {
-                        observer: 'init'
+                    pwm-pin: {
+                        type: String
+                    },
+                    dir-pin: {
+                        type: String
+                    },
+                    cdir-pin: {
+                        type: String
                     },
                     on: {
                         type: Boolean,
@@ -24,6 +30,9 @@
                         observer: 'reverseChanged'
                     }
                 };
+                this.observers = [
+                    'init(pwmPin, dirPin, cdirPin)'
+                ];
 
                 this.jFive = require('johnny-five');
                 const Raspio = require('raspi-io');
@@ -34,7 +43,14 @@
             }
 
             init() {
-                this.motor = new this.jFive.Motor(this.pin);
+                this.motor = new this.jFive.Motor({
+                    pins: {
+                        pwm: this.pwmPin,
+                        dir: this.dirPin,
+                        cdir: this.cdirPin
+                    }
+                });
+                this.onChanged();
             }
 
             onChanged() {
