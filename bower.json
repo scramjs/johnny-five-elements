@@ -1,6 +1,6 @@
 {
-  "name": "raspberry-web-components",
-  "version": "0.0.2",
+  "name": "jfive-web-components",
+  "version": "0.0.3",
   "description": "This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"
