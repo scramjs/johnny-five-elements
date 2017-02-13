@@ -1,18 +1,18 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<dom-module id="rasp-motor">
+<dom-module id="jfive-motor">
     <script>
-        class RaspMotor {
+        class JFiveMotor {
             beforeRegister() {
-                this.is = 'rasp-motor';
+                this.is = 'jfive-motor';
                 this.properties = {
-                    pwm-pin: {
+                    'pwm-pin': {
                         type: String
                     },
-                    dir-pin: {
+                    'dir-pin': {
                         type: String
                     },
-                    cdir-pin: {
+                    'cdir-pin': {
                         type: String
                     },
                     on: {
@@ -75,6 +75,6 @@
             }
         }
 
-        Polymer(RaspMotor);
+        Polymer(JFiveMotor);
     </script>
 </dom-module>
