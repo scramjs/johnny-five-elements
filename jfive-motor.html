@@ -6,13 +6,13 @@
             beforeRegister() {
                 this.is = 'jfive-motor';
                 this.properties = {
-                    'pwm-pin': {
+                    pwmPin: {
                         type: String
                     },
-                    'dir-pin': {
+                    dirPin: {
                         type: String
                     },
-                    'cdir-pin': {
+                    cdirPin: {
                         type: String
                     },
                     on: {
@@ -54,6 +54,9 @@
             }
 
             onChanged() {
+                //TODO look into using a multi-property observer to declare this.motor as a dependency. It might not work because we want this called very time the on property is changed
+                if (!this.motor) return;
+
                 if (this.on) {
                     this.refreshMotor();
                 }
@@ -71,6 +74,8 @@
             }
 
             refreshMotor() {
+                //TODO look into using a multi-property observer to declare this.motor as a dependency. It might not work because we want this called very time the on property is changed
+                if (!this.motor) return;
                 this.reverse ? this.motor.reverse(this.speed) : this.motor.forward(this.speed);
             }
         }
