@@ -1,6 +1,6 @@
 {
   "name": "jfive-web-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
