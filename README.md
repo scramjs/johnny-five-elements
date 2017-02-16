@@ -4,7 +4,7 @@ Web components for controlling hardware with the [Johnny-Five](http://johnny-fiv
 
 ## Preview
 
-Not all elements are implemented yet, but you can expect something like the following in the future:
+Here is the concept:
 ```
 <jfive-gpio pin="GPIO3" input="true"></jfive-gpio>
 
@@ -16,6 +16,7 @@ Not all elements are implemented yet, but you can expect something like the foll
   
 <jfive-servo></jfive-servo>
 ```
+Not all elements are implemented yet, but you can expect something like the above in the future. See what has been implemented in the `Components` section below.
 
 ## Installation
 
@@ -28,14 +29,14 @@ npm install --save johnny-five raspi-io
 
 These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine).
 
-To understand which pins are available for use on the Raspberry Pi 3, use the following pin layout:
-http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o 
-Documentation for more devices and pin layouts may come later.
-
 You must be the root user while using these components:
 ```
 sudo su
 ```
+
+To understand which pins are available for use on the Raspberry Pi 3, use the following pin layout:
+http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o 
+Documentation for more devices and pin layouts may come later.
 
 ### Components
 
@@ -84,6 +85,12 @@ http://www.rakeshmondal.info/L293D-Motor-Driver
 https://business.tutsplus.com/tutorials/controlling-dc-motors-using-python-with-a-raspberry-pi--cms-20051
 http://www.instructables.com/id/How-to-use-the-L293D-Motor-Driver-Arduino-Tutorial/step2/The-Circuit/
 http://arduinoguides.blogspot.com/2012/06/using-l239-motor-driver.html
+
+## Examples
+
+Here are some example applications written with JFive Web Components:
+
+* https://github.com/scramjs/web-copter
 
 ## Acknowledgements
 
