@@ -36,20 +36,32 @@
 
                 this.jFive = require('johnny-five');
                 const Raspio = require('raspi-io');
-                const board = new this.jFive.Board({
-                    io: new Raspio(),
-                    repl: false
-                });
+
+                try {
+                    const board = new this.jFive.Board({
+                        io: new Raspio(),
+                        repl: false
+                    });
+                }
+                catch(error) {
+                    console.log(error);
+                }
             }
 
             init() {
-                this.motor = new this.jFive.Motor({
-                    pins: {
-                        pwm: this.pwmPin,
-                        dir: this.dirPin,
-                        cdir: this.cdirPin
-                    }
-                });
+                try {
+                    this.motor = new this.jFive.Motor({
+                        pins: {
+                            pwm: this.pwmPin,
+                            dir: this.dirPin,
+                            cdir: this.cdirPin
+                        }
+                    });
+                }
+                catch(error) {
+                    console.log(error);
+                }
+                
                 this.onChanged();
             }
 

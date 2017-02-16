@@ -1,8 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
 
-<dom-module id="rasp-led">
+<dom-module id="jfive-led">
     <script>
-        class RaspLED {
+        class JFiveLED {
             beforeRegister() {
                 this.is = 'rasp-led';
                 this.properties = {
@@ -17,14 +17,25 @@
 
                 this.jFive = require('johnny-five');
                 const Raspio = require('raspi-io');
-                const board = new this.jFive.Board({
-                    io: new Raspio(),
-                    repl: false
-                });
+
+                try {
+                    const board = new this.jFive.Board({
+                        io: new Raspio(),
+                        repl: false
+                    });
+                }
+                catch(error) {
+                    console.log(error);
+                }
             }
 
             initLED() {
-                this.LED = new this.jFive.Led(this.pin);
+                try {
+                    this.LED = new this.jFive.Led(this.pin);
+                }
+                catch(error) {
+                    console.log(error);
+                }
             }
 
             onChanged() {
@@ -32,6 +43,6 @@
             }
         }
 
-        Polymer(RaspLED);
+        Polymer(JFiveLED);
     </script>
 </dom-module>
