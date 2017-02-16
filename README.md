@@ -12,7 +12,7 @@ Not all elements are implemented yet, but you can expect something like the foll
   
 <jfive-button pin="GPIO23" on-push="buttonPush"></jfive-button>
   
-<jfive-motor></jfive-motor>
+<jfive-motor on="true" speed="128" reverse pwm-pin="GPIO18" dir-pin="GPIO21" cdir-pin="GPIO22"></jfive-motor>
   
 <jfive-servo></jfive-servo>
 ```
@@ -53,11 +53,31 @@ Turns the LED on or off.
 
 The GPIO pin that the positive end of the LED is connected to.
 
-Blah
-
 ## `<jfive-motor></jfive-motor>`
 
-``
+`pwmPin: string`
+
+The GPIO pin used to enable, disable, and control the speed of the motor with a 3-pin h-bridge.
+
+`dirPin: string`
+
+One of the GPIO pins used to control the direction of the motor with a 3-pin h-bridge.
+
+`cdirPin: string`
+
+One of the GPIO pins used to control the direction of the motor with a 3-pin h-bridge.
+
+`on: boolean`
+
+Turns the motor on or off.
+
+`speed: number`
+
+Controls the speed of the motor. Must be a number between 0 and 255.
+
+`reverse: boolean`
+
+Controls the direction of the motor, either clockwise or counterclockwise. The direction will be relative to the direction of the current.
 
 You will most likely need a motor driver if you wish to control the direction of your motors. I highly recommend the L293D integrated circuit, which is a 3-pin h-bridge. To understand how to use the L293D:
 http://www.rakeshmondal.info/L293D-Motor-Driver
