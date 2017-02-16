@@ -1,7 +1,7 @@
 {
   "name": "jfive-web-components",
-  "version": "0.0.6",
-  "description": "This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.",
+  "version": "0.0.7",
+  "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"
   ],
