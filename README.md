@@ -1,4 +1,4 @@
-# Raspberry Web Components
+# JFive Web Components
 
 This repository contains experimental web components meant to be used with Raspberry Pi devices to control hardware.
 
