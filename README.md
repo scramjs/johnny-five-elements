@@ -6,15 +6,15 @@ Web components for controlling hardware with the [Johnny-Five](http://johnny-fiv
 
 Not all elements are implemented yet, but you can expect something like the following in the future:
 ```
-  <jfive-gpio pin="GPIO3" input="true"></jfive-gpio>
+<jfive-gpio pin="GPIO3" input="true"></jfive-gpio>
 
-  <jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
+<jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
   
-  <jfive-button pin="GPIO23" on-push="buttonPush"></jfive-button>
+<jfive-button pin="GPIO23" on-push="buttonPush"></jfive-button>
   
-  <jfive-motor></jfive-motor>
+<jfive-motor></jfive-motor>
   
-  <jfive-servo></jfive-servo>
+<jfive-servo></jfive-servo>
 ```
 
 ## Installation
