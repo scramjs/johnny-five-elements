@@ -61,7 +61,7 @@
                 catch(error) {
                     console.log(error);
                 }
-                
+
                 this.onChanged();
             }
 
@@ -78,11 +78,15 @@
             }
 
             speedChanged() {
-                this.refreshMotor();
+                if (this.on) {
+                    this.refreshMotor();
+                }
             }
 
             reverseChanged() {
-                this.refreshMotor();
+                if (this.on) {
+                    this.refreshMotor();
+                }
             }
 
             refreshMotor() {
