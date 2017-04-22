@@ -17,8 +17,6 @@ Here is the concept:
 <jfive-servo></jfive-servo>
 ```
 
-
-
 We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#components). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
 
 # Installation
@@ -45,7 +43,9 @@ Documentation for more devices and pin layouts may come later.
 
 All of the components listed below have been implemented with the properties, events, and methods described.
 
-## `<jfive-board></jfive-board>`
+* [Board](<jfive-board></jfive-board>)
+
+# `<jfive-board></jfive-board>`
 
 #### Properties
 
