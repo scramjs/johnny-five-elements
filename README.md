@@ -92,6 +92,26 @@ Here are some example applications written with JFive Web Components:
 
 * https://github.com/scramjs/web-copter
 
+## What's Next?
+
+Here are the things we are working towards. If you would like to contribute, open up an issue with the name of an item that is not being worked on and we'll have it assigned to you:
+
+- [ ] Accelerometer component
+  - [ ] Active development by: 
+  * Discussion under: 
+- [ ] Altimeter component
+  - [ ] Active development by: 
+  * Discussion under: 
+- [ ] Animation component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Barometer component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Board component
+  - [ ] Active development by: @lastmjs
+  * Discussion under: 
+
 ## Acknowledgements
 
 Raspberry Pi is a trademark of the Raspberry Pi Foundation
