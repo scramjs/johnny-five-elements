@@ -47,7 +47,7 @@ All of the components listed below have been implemented with the properties and
 
 ## `<jfive-led></jfive-led>`
 
-##### Properties
+#### Properties
 
 `on: boolean`
 
@@ -58,6 +58,8 @@ Turns the LED on or off.
 The GPIO pin that the positive end of the LED is connected to.
 
 ## `<jfive-motor></jfive-motor>`
+
+#### Properties
 
 `pwmPin: string`
 
