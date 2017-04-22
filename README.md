@@ -5,7 +5,7 @@ Web components for controlling hardware with the [Johnny-Five](http://johnny-fiv
 ## Introduction
 
 Here is the concept:
-```
+```HTML
 <jfive-pin pin="GPIO3" input="true"></jfive-pin>
 
 <jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
