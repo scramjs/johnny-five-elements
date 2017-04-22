@@ -99,7 +99,7 @@ Here are some example applications written with JFive Web Components:
 
 # What's Next?
 
-Here are the things we are working towards. If you would like to contribute, open up an issue with the name of an item that is not being worked on and we'll have it assigned to you:
+Here are the things we are working towards. If you would like to contribute, open an issue with the name of an item that is not being worked on and we'll have it assigned to you. An item is already being worked on if there is a check next to `Active development by`:
 
 - [ ] Accelerometer component
   - [ ] Active development by: 
