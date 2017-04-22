@@ -1,12 +1,12 @@
 # JFive Web Components
 
-Web components for controlling hardware with the [Johnny-Five](http://johnny-five.io/) JavaScript Robotics & IoT platform. Build robots declaratively with custom elements!
+Web components for controlling hardware with the [Johnny-Five](http://johnny-five.io/) JavaScript Robotics & IoT platform. Build hardware declaratively with custom elements!
 
-## Preview
+## Introduction
 
 Here is the concept:
 ```
-<jfive-gpio pin="GPIO3" input="true"></jfive-gpio>
+<jfive-pin pin="GPIO3" input="true"></jfive-pin>
 
 <jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
   
@@ -16,7 +16,10 @@ Here is the concept:
   
 <jfive-servo></jfive-servo>
 ```
-Not all elements are implemented yet, but you can expect something like the above in the future. See what has been implemented in the `Components` section below.
+
+
+
+We are currently in active development to support the entire Johnny-Five API. See which components have been implemented in the `Components` section below.
 
 ## Installation
 
