@@ -28,14 +28,27 @@ For more background information, see the following resources:
 
 ```
 bower install --save jfive-web-components
-npm install --save johnny-five raspi-io
+npm install --save johnny-five
 ```
 
 # Use
 
 These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine). Helpful instructions for specific devices are detailed below. Instructions for more devices may come in the future.
 
-## Raspberry PI
+## Raspberry Pi
+
+You'll need to install the Raspberry Pi IO plugin:
+
+```
+npm install --save raspi-io
+```
+
+Indicate your use of hte Raspberry Pi IO plugin from your top-level `jfive-board` component:
+
+```HTML
+<jfive-board io-plugin="raspi-io">
+</jfive-board>
+```
 
 You must be the root user while using these components:
 ```
