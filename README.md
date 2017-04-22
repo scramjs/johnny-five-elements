@@ -43,9 +43,13 @@ Documentation for more devices and pin layouts may come later.
 
 All of the components listed below have been implemented with the properties, events, and methods described.
 
-* [Board](<jfive-board></jfive-board>)
+* [Board](#jfive-board)
+* [Led](#jfive-led)
+* [Motor](#jfive-motor)
+* [Pin](#jfive-pin)
+* Switch(#jfive-switch)
 
-# `<jfive-board></jfive-board>`
+# jfive-board
 
 #### Properties
 
@@ -53,7 +57,7 @@ All of the components listed below have been implemented with the properties, ev
 
 #### Properties
 
-## `<jfive-led></jfive-led>`
+# jfive-led
 
 #### Properties
 
@@ -65,7 +69,7 @@ Turns the LED on or off.
 
 The GPIO pin that the positive end of the LED is connected to.
 
-## `<jfive-motor></jfive-motor>`
+# jfive-motor
 
 #### Properties
 
@@ -99,11 +103,11 @@ https://business.tutsplus.com/tutorials/controlling-dc-motors-using-python-with-
 http://www.instructables.com/id/How-to-use-the-L293D-Motor-Driver-Arduino-Tutorial/step2/The-Circuit/
 http://arduinoguides.blogspot.com/2012/06/using-l239-motor-driver.html
 
-## `<jfive-pin></jfive-pin>`
+# jfive-pin
 
 #### Properties
 
-## `<jfive-switch></jfive-switch>`
+# jfive-switch
 
 #### Properties
 
