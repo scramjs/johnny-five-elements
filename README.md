@@ -109,8 +109,8 @@ Here are the things we are working towards. If you would like to contribute, ope
   - [ ] Active development by:
   * Discussion under:
 - [ ] Board component
-  - [ ] Active development by: @lastmjs
-  * Discussion under: 
+  - [x] Active development by: [lastmjs](https://github.com/lastmjs)
+  * Discussion under: [#16](https://github.com/scramjs/jfive-web-components/issues/16)
 
 ## Acknowledgements
 
