@@ -112,7 +112,7 @@ Here are the things we are working towards. If you would like to contribute, ope
   - [x] Active development by: [lastmjs](https://github.com/lastmjs)
   * Discussion under: [#16](https://github.com/scramjs/jfive-web-components/issues/16)
 - [ ] Button component
-  - [ ] Active development by: [bdemann](https://github.com/bdemann)
+  - [x] Active development by: [bdemann](https://github.com/bdemann)
   * Discussion under: [#17](https://github.com/scramjs/jfive-web-components/issues/17)
 - [ ] Compass component
   - [ ] Active development by: 
@@ -145,10 +145,19 @@ Here are the things we are working towards. If you would like to contribute, ope
   - [ ] Active development by:
   * Discussion under:
 - [ ] Led component
-  - [ ] Active development by: [bdemann](https://github.com/bdemann)
+  - [x] Active development by: [bdemann](https://github.com/bdemann)
   * Discussion under: [#1](https://github.com/scramjs/jfive-web-components/issues/1)
 - [ ] Led-Digits component
   - [ ] Active development by:
+  * Discussion under:
+- [ ] Led-Matrix component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Led-RGB
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Property testing framework
+  - [ ] Active development by: [lastmjs]()
   * Discussion under:
 
 ## Acknowledgements
