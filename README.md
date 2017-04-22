@@ -28,7 +28,9 @@ npm install --save johnny-five raspi-io
 
 # Use
 
-These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine).
+These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine). Helpful instructions for specific devices are detailed below. Instructions for more devices may come in the future.
+
+## Raspberry PI
 
 You must be the root user while using these components:
 ```
