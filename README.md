@@ -192,13 +192,13 @@ Here are the things we are working towards. If you would like to contribute, ope
 - [ ] ShiftRegister component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Stepper
+- [ ] Stepper component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Switch
-  - [ ] Active development by:
-  * Discussion under:
-- [ ] Thermometer
+- [ ] Switch component
+  - [x] Active development by: [bdemann](https://github.com/bdemann)
+  * Discussion under: [#19](https://github.com/scramjs/jfive-web-components/issues/19)
+- [ ] Thermometer component
   - [ ] Active development by:
   * Discussion under:
 - [ ] Property-based testing structure
