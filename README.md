@@ -43,7 +43,15 @@ Documentation for more devices and pin layouts may come later.
 
 # Components
 
-All of the components listed below have been implemented with the properties and events described.
+All of the components listed below have been implemented with the properties, events, and methods described.
+
+## `<jfive-board></jfive-board>`
+
+#### Properties
+
+## `<jfive-button></jfive-button>`
+
+#### Properties
 
 ## `<jfive-led></jfive-led>`
 
@@ -90,6 +98,14 @@ http://www.rakeshmondal.info/L293D-Motor-Driver
 https://business.tutsplus.com/tutorials/controlling-dc-motors-using-python-with-a-raspberry-pi--cms-20051
 http://www.instructables.com/id/How-to-use-the-L293D-Motor-Driver-Arduino-Tutorial/step2/The-Circuit/
 http://arduinoguides.blogspot.com/2012/06/using-l239-motor-driver.html
+
+## `<jfive-pin></jfive-pin>`
+
+#### Properties
+
+## `<jfive-switch></jfive-switch>`
+
+#### Properties
 
 # Examples
 
