@@ -2,7 +2,7 @@
 
 Web components for controlling hardware with the [Johnny-Five](http://johnny-five.io/) JavaScript Robotics & IoT platform. Build hardware declaratively with custom elements!
 
-## Introduction
+# Introduction
 
 Here is the concept:
 ```HTML
@@ -19,16 +19,16 @@ Here is the concept:
 
 
 
-We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#jfive-web-components). We could also use your help. To see what needs working on go to the `What's Next?` section.
+We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#components). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
 
-## Installation
+# Installation
 
 ```
 bower install --save jfive-web-components
 npm install --save johnny-five raspi-io
 ```
 
-## Use
+# Use
 
 These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine).
 
@@ -41,7 +41,7 @@ To understand which pins are available for use on the Raspberry Pi 3, use the fo
 http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o 
 Documentation for more devices and pin layouts may come later.
 
-### Components
+# Components
 
 All of the components listed below have been implemented with the properties and events described.
 
@@ -91,13 +91,13 @@ https://business.tutsplus.com/tutorials/controlling-dc-motors-using-python-with-
 http://www.instructables.com/id/How-to-use-the-L293D-Motor-Driver-Arduino-Tutorial/step2/The-Circuit/
 http://arduinoguides.blogspot.com/2012/06/using-l239-motor-driver.html
 
-## Examples
+# Examples
 
 Here are some example applications written with JFive Web Components:
 
 * https://github.com/scramjs/web-copter
 
-## What's Next?
+# What's Next?
 
 Here are the things we are working towards. If you would like to contribute, open up an issue with the name of an item that is not being worked on and we'll have it assigned to you:
 
