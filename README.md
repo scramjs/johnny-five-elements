@@ -1,6 +1,6 @@
 # JFive Web Components
 
-Web components for controlling hardware with the [Johnny-Five](http://johnny-five.io/) JavaScript Robotics & IoT platform. Build hardware declaratively with custom elements!
+Web components for controlling hardware with the [Johnny-Five JavaScript Robotics & IoT platform](http://johnny-five.io/). Build hardware declaratively with custom elements!
 
 # Introduction
 
