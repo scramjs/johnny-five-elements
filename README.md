@@ -19,7 +19,7 @@ Here is the concept:
 
 
 
-We are currently in active development to support the entire Johnny-Five API. See which components have been implemented in the `Components` section below.
+We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](###Components). We could also use your help. To see what needs working on go to the `What's Next?` section.
 
 ## Installation
 
