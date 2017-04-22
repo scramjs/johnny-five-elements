@@ -153,12 +153,54 @@ Here are the things we are working towards. If you would like to contribute, ope
 - [ ] Led-Matrix component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Led-RGB
+- [ ] Led-RGB component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Property testing framework
-  - [ ] Active development by: [lastmjs]()
+- [ ] Light component
+  - [ ] Active development by:
   * Discussion under:
+- [ ] Motion component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Motor component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Multi component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Piezo component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Pin component
+  - [ ] Active development by: [lastmjs](https://github.com/lastmjs)
+  * Discussion under: [#15](https://github.com/scramjs/jfive-web-components/issues/15)
+- [ ] Proximity component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Relay component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Sensor component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Servo component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] ShiftRegister component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Stepper
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Switch
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Thermometer
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Property-based testing structure
+  - [ ] Active development by: [lastmjs](https://github.com/lastmjs)
+  * Discussion under: [#18](https://github.com/scramjs/jfive-web-components/issues/18)
 
 ## Acknowledgements
 
