@@ -172,7 +172,7 @@ Here are the things we are working towards. If you would like to contribute, ope
   - [ ] Active development by:
   * Discussion under:
 - [ ] Pin component
-  - [ ] Active development by: [lastmjs](https://github.com/lastmjs)
+  - [x] Active development by: [lastmjs](https://github.com/lastmjs)
   * Discussion under: [#15](https://github.com/scramjs/jfive-web-components/issues/15)
 - [ ] Proximity component
   - [ ] Active development by:
@@ -199,7 +199,7 @@ Here are the things we are working towards. If you would like to contribute, ope
   - [ ] Active development by:
   * Discussion under:
 - [ ] Property-based testing structure
-  - [ ] Active development by: [lastmjs](https://github.com/lastmjs)
+  - [x] Active development by: [lastmjs](https://github.com/lastmjs)
   * Discussion under: [#18](https://github.com/scramjs/jfive-web-components/issues/18)
 
 ## Acknowledgements
