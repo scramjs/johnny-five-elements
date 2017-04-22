@@ -43,7 +43,7 @@ You'll need to install the Raspberry Pi IO plugin:
 npm install --save raspi-io
 ```
 
-Indicate your use of hte Raspberry Pi IO plugin from your top-level `jfive-board` component:
+Indicate your use of the Raspberry Pi IO plugin from your top-level `jfive-board` component:
 
 ```HTML
 <jfive-board io-plugin="raspi-io">
