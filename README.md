@@ -111,6 +111,45 @@ Here are the things we are working towards. If you would like to contribute, ope
 - [ ] Board component
   - [x] Active development by: [lastmjs](https://github.com/lastmjs)
   * Discussion under: [#16](https://github.com/scramjs/jfive-web-components/issues/16)
+- [ ] Button component
+  - [ ] Active development by: [bdemann](https://github.com/bdemann)
+  * Discussion under: [#17](https://github.com/scramjs/jfive-web-components/issues/17)
+- [ ] Compass component
+  - [ ] Active development by: 
+  * Discussion under:
+- [ ] ESC component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Expander component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] GPS component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Gyro component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Hygrometer component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] IMU component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Joystick component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Keypad component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] LCD component
+  - [ ] Active development by:
+  * Discussion under:
+- [ ] Led component
+  - [ ] Active development by: [bdemann](https://github.com/bdemann)
+  * Discussion under: [#1](https://github.com/scramjs/jfive-web-components/issues/1)
+- [ ] Led-Digits component
+  - [ ] Active development by:
+  * Discussion under:
 
 ## Acknowledgements
 
