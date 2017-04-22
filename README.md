@@ -44,16 +44,17 @@ Documentation for more devices and pin layouts may come later.
 All of the components listed below have been implemented with the properties, events, and methods described.
 
 * [Board](#jfive-board)
+* [Button](#jfive-button)
 * [Led](#jfive-led)
 * [Motor](#jfive-motor)
 * [Pin](#jfive-pin)
-* Switch(#jfive-switch)
+* [Switch](#jfive-switch)
 
 # jfive-board
 
 #### Properties
 
-## `<jfive-button></jfive-button>`
+# jfive-button
 
 #### Properties
 
