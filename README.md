@@ -19,6 +19,11 @@ Here is the concept:
 
 We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#components). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
 
+For more background information, see the following resources:
+* [Universal Web Components article](https://scotch.io/bar-talk/universal-web-components)
+* [Server-side Web Components article](https://scotch.io/tutorials/server-side-web-components-how-and-why)
+* [React Hardware article](http://iamdustan.com/2015/12/16/react-hardware/)
+
 # Installation
 
 ```
