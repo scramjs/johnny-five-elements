@@ -1,48 +1,63 @@
-<link rel="import" href="../polymer/polymer.html">
+<script>
+  class JFiveLED {
+    constructor(){
+      super();
+      this.jFive = require('johnny-five');
+      const Raspio = require('raspi-io');
 
-<dom-module id="jfive-led">
-    <script>
-        class JFiveLED {
-            beforeRegister() {
-                this.is = 'rasp-led';
-                this.properties = {
-                    pin: {
-                        observer: 'initLED'
-                    },
-                    on: {
-                        type: Boolean,
-                        observer: 'onChanged'
-                    }
-                };
+      try {
+        const board = new this.jFive.Board({
+          io: new Raspio(),
+          repl: false
+        });
+      }
+      catch(error){
+        console.log(error);
+      }
 
-                this.jFive = require('johnny-five');
-                const Raspio = require('raspi-io');
+    }
 
-                try {
-                    const board = new this.jFive.Board({
-                        io: new Raspio(),
-                        repl: false
-                    });
-                }
-                catch(error) {
-                    console.log(error);
-                }
-            }
+    initLED() {
+      try {
+        this.LED = new this.JFive.Led(this.pin);
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
 
-            initLED() {
-                try {
-                    this.LED = new this.jFive.Led(this.pin);
-                }
-                catch(error) {
-                    console.log(error);
-                }
-            }
+    set pin(val) {
+      this.pin = val;
+      initLED();
+    }
 
-            onChanged() {
-                this.on ? this.LED.on() : this.LED.off();
-            }
-        }
+    set on(val) {
+      this._changeStateLED(val);
+    }
 
-        Polymer(JFiveLED);
-    </script>
-</dom-module>
+    set off(val) {
+      this._changeStateLED(!val);
+    }
+
+    //Public Methods
+
+    toggle(){
+      this._changeStateLED(!this.on);
+    }
+
+    //Private Methods
+
+    _changeStateLED(val){
+      this.on = val;
+      this.off = !val;
+      if(val) {
+        this.LED.on();
+      }
+      else {
+        this.LED.off();
+      }
+    }
+  }
+
+  window.customElements.define('jfive-led', JFiveLED);
+</script>
