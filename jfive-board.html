@@ -1,0 +1,90 @@
+<script>
+    class JFiveBoard extends HTMLElement {
+        constructor() {
+            super();
+
+            this._boardId;
+            this._port;
+            this._repl = true;
+            this._debug = true;
+            this._timeout = 10;
+        }
+
+        static get observedAttributes() {
+            return [
+                'board-id',
+                'port',
+                'repl',
+                'debug',
+                'timeout'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'board-id': {
+                    this.boardId = newValue;
+                    break;
+                }
+                case 'port': {
+                    this.port = newValue;
+                    break;
+                }
+                case 'repl': {
+                    this.repl = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.repl;
+                    break;
+                }
+                case 'debug': {
+                    this.debug = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.repl;
+                    break;
+                }
+                case 'timeout': {
+                    this.timeout = parseInt(newValue, 10);
+                    break;
+                }
+            }
+        }
+
+        set boardId(val) {
+            this._boardId = val;
+        }
+
+        get boardId() {
+            return this._boardId;
+        }
+
+        set port(val) {
+            this._port = val;
+        }
+
+        get port() {
+            return this._port;
+        }
+
+        set repl(val) {
+            this._repl = val;
+        }
+
+        get repl() {
+            return this._repl;
+        }
+
+        set debug(val) {
+            this._debug = val;
+        }
+
+        get debug() {
+            return this._debug;
+        }
+
+        set timeout(val) {
+            this._timeout = val;
+        }
+
+        get timeout() {
+            return this._timeout;
+        }
+    }
+
+    window.customElements.define('jfive-board', JFiveBoard);
+</script>
