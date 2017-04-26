@@ -3,8 +3,7 @@
   "version": "0.0.8",
   "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test-build": "polymer-bundler index.html > build.html"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -17,10 +16,7 @@
   },
   "homepage": "https://github.com/scramjs/jfive-web-components#readme",
   "dependencies": {
-    "johnny-five": "^0.10.6",
-    "raspi-io": "^6.2.0"
+    "johnny-five": "^0.10.10"
   },
-  "devDependencies": {
-    "polymer-bundler": "^2.0.0-pre.6"
-  }
+  "devDependencies": {}
 }
