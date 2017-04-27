@@ -1,13 +1,30 @@
 <script>
+    // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
+    // TODO this is my own mock
+    const five = {
+        Board: function(options) {
+            console.log('Board options received', options)
+            this.on = () => {
+
+            };
+        }
+    };
+
     class JFiveBoard extends HTMLElement {
         constructor() {
             super();
 
-            this._boardId;
-            this._port;
-            this._repl = true;
-            this._debug = true;
-            this._timeout = 10;
+            // this._boardId;
+            // this._port;
+            // this._repl = true;
+            // this._debug = true;
+            // this._timeout = 10;
+            this.boardId;
+            this.port;
+            this.repl = true;
+            this.debug = true;
+            this.timeout = 10;
+            this.board = null;
         }
 
         static get observedAttributes() {
@@ -45,45 +62,110 @@
             }
         }
 
-        set boardId(val) {
-            this._boardId = val;
+        connectedCallback() {
+            // The assumption is that this setTimeout will allow all data-bound properties from the host component to be set on this component
+            // before the function inside of the setTimeout is called. In other words, all of this component's properties should be set when this setTimeout function runs
+            setTimeout(() => {
+                // initialize the board
+                this.board = new five.Board({
+                    id: this.boardId,
+                    port: this.port,
+                    repl: this.repl,
+                    debug: this.debug,
+                    timeout: this.timeout
+                });
+
+                // initialize all event handlers, pass the events up to the host element and no further
+                this.board.on('connect', (event) => {
+                    this.dispatchEvent(new CustomEvent('connect', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('ready', (event) => {
+                    this.dispatchEvent(new CustomEvent('ready', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('exit', (event) => {
+                    this.dispatchEvent(new CustomEvent('exit', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('info', (event) => {
+                    this.dispatchEvent(new CustomEvent('info', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('warn', (event) => {
+                    this.dispatchEvent(new CustomEvent('warn', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('fail', (event) => {
+                    this.dispatchEvent(new CustomEvent('fail', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+
+                this.board.on('message', (event) => {
+                    this.dispatchEvent(new CustomEvent('message', {
+                        detail: event,
+                        bubbles: false
+                    }));
+                });
+            });
         }
 
-        get boardId() {
-            return this._boardId;
-        }
-
-        set port(val) {
-            this._port = val;
-        }
-
-        get port() {
-            return this._port;
-        }
-
-        set repl(val) {
-            this._repl = val;
-        }
-
-        get repl() {
-            return this._repl;
-        }
-
-        set debug(val) {
-            this._debug = val;
-        }
-
-        get debug() {
-            return this._debug;
-        }
-
-        set timeout(val) {
-            this._timeout = val;
-        }
-
-        get timeout() {
-            return this._timeout;
-        }
+        // set boardId(val) {
+        //     this._boardId = val;
+        // }
+        //
+        // get boardId() {
+        //     return this._boardId;
+        // }
+        //
+        // set port(val) {
+        //     this._port = val;
+        // }
+        //
+        // get port() {
+        //     return this._port;
+        // }
+        //
+        // set repl(val) {
+        //     this._repl = val;
+        // }
+        //
+        // get repl() {
+        //     return this._repl;
+        // }
+        //
+        // set debug(val) {
+        //     this._debug = val;
+        // }
+        //
+        // get debug() {
+        //     return this._debug;
+        // }
+        //
+        // set timeout(val) {
+        //     this._timeout = val;
+        // }
+        //
+        // get timeout() {
+        //     return this._timeout;
+        // }
     }
 
     window.customElements.define('jfive-board', JFiveBoard);
