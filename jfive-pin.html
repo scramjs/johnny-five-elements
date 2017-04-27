@@ -1,1 +1,60 @@
+<script>
+    // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
+    // TODO this is my own mock
+    const five = {
+        Pin: function(options) {
+            console.log('Pin options received', options)
+        }
+    };
 
+    class JFivePin extends HTMLElement {
+        constructor() {
+            super();
+
+            this.Pin;
+            this.pin;
+            this.pinId;
+            this.type;
+            this.mode;
+        }
+
+        static get observedAttributes() {
+            return [
+                'pin-id',
+                'pin',
+                'type',
+                'mode'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'pin-id': {
+                    this.pinId = newValue;
+                    break;
+                }
+                case 'pin': {
+                    this.pin = newValue;
+                    break;
+                }
+                case 'type': {
+                    this.type = newValue;
+                    break;
+                }
+                case 'mode': {
+                    this.mode = parseInt(newValue, 10);
+                    break;
+                }
+            }
+        }
+
+        _jfiveInit() {
+            this.Pin = new five.Pin({
+                id: this.pinId,
+                pin: this.pin,
+                type: this.type,
+                mode: this.mode
+            });
+        }
+    }
+</script>
