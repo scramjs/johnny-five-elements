@@ -24,8 +24,7 @@ For more background information, see the following resources:
 # Installation
 
 ```
-bower install --save jfive-web-components
-npm install --save johnny-five
+npm install --save jfive-web-components
 ```
 
 # Use
