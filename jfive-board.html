@@ -22,10 +22,10 @@
             this.boardId;
             this.port;
             this.ioPlugin;
-            this.repl = true;
-            this.debug = true;
-            this.timeout = 10;
-            this.board = null;
+            this.repl;
+            this.debug;
+            this.timeout;
+            this.Board;
         }
 
         static get observedAttributes() {
@@ -73,7 +73,7 @@
             // before the function inside of the setTimeout is called. In other words, all of this component's properties should be set when this setTimeout function runs
             setTimeout(() => {
                 // initialize the board
-                this.board = new five.Board({
+                this.Board = new five.Board({
                     id: this.boardId,
                     port: this.port,
                     repl: this.repl,
@@ -83,49 +83,49 @@
                 });
 
                 // initialize all event handlers, pass the events up to the host element and no further
-                this.board.on('connect', (event) => {
+                this.Board.on('connect', (event) => {
                     this.dispatchEvent(new CustomEvent('connect', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('ready', (event) => {
+                this.Board.on('ready', (event) => {
                     this.dispatchEvent(new CustomEvent('ready', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('exit', (event) => {
+                this.Board.on('exit', (event) => {
                     this.dispatchEvent(new CustomEvent('exit', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('info', (event) => {
+                this.Board.on('info', (event) => {
                     this.dispatchEvent(new CustomEvent('info', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('warn', (event) => {
+                this.Board.on('warn', (event) => {
                     this.dispatchEvent(new CustomEvent('warn', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('fail', (event) => {
+                this.Board.on('fail', (event) => {
                     this.dispatchEvent(new CustomEvent('fail', {
                         detail: event,
                         bubbles: false
                     }));
                 });
 
-                this.board.on('message', (event) => {
+                this.Board.on('message', (event) => {
                     this.dispatchEvent(new CustomEvent('message', {
                         detail: event,
                         bubbles: false
