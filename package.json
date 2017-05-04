@@ -16,7 +16,6 @@
   },
   "homepage": "https://github.com/scramjs/jfive-web-components#readme",
   "dependencies": {
-    "johnny-five": "^0.10.6",
-    "raspi-io": "^6.2.0"
+    "johnny-five": "^0.10.6"
   }
 }
