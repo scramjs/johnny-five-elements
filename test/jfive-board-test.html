@@ -4,41 +4,54 @@
     class JFiveBoardTest extends HTMLElement {
         constructor() {
             super();
+
+            this.jfiveBoard = null;
         }
 
         connectedCallback() {
-            const numTests = 10000;
+            const numTests = 100;
             const jsc = require('jsverify');
 
-            // const sinon = require('sinon');
-            // const stub = sinon.stub();
-            // stub.withArgs();
-            // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
-            // TODO this is my own stub, figure out how to use sinon if that would help, which it probably would
-            const fiveStub = {
-                Board: function(options) {
-                    this.on = (name, handler) => {
-                        this[name] = handler;
-                    };
-                }
+            const before = () => {
+                // const sinon = require('sinon');
+                // const stub = sinon.stub();
+                // stub.withArgs();
+                // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
+                // TODO this is my own stub, figure out how to use sinon if that would help, which it probably would
+                const fiveStub = {
+                    Board: function(options) {
+                        this.options = options;
+                        this.on = (name, handler) => {
+                            this[name] = handler;
+                        };
+                    }
+                };
+
+                const jfiveBoard = document.createElement('jfive-board');
+                jfiveBoard.five = fiveStub;
+                jfiveBoard.require = function(name) {
+                    this.name = name;
+                };
+                this.appendChild(jfiveBoard);
+
+                return jfiveBoard
             };
 
-            const jfiveBoard = document.createElement('jfive-board');
-            jfiveBoard.five = fiveStub;
-            jfiveBoard.require = function(name) {
-                return name;
+            const after = (jfiveBoard) => {
+                this.removeChild(jfiveBoard);
             };
-            this.appendChild(jfiveBoard);
 
             const arbBoardId = jsc.nestring;
             const arbPort = jsc.nestring;
             const arbRepl = jsc.bool;
             const arbDebug = jsc.bool;
             const arbTimeout = jsc.nat;
-            const arbIOPlugin = jsc.nestring;
+            const arbIOPlugin = jsc.string;
 
             // check that the properties are all initialized correctly through plain attributes
             jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = before();
+
                 jfiveBoard.setAttribute('board-id', boardId);
                 jfiveBoard.setAttribute('port', port);
                 jfiveBoard.setAttribute('repl', repl);
@@ -46,13 +59,18 @@
                 jfiveBoard.setAttribute('timeout', timeout);
                 jfiveBoard.setAttribute('io-plugin', ioPlugin);
 
-                return jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                after(jfiveBoard);
+
+                return result;
             }), {
                 tests: numTests
             });
 
-            // check that the properties are all initialized correctly through data-binding
+            // check that the properties are all initialized correctly through property binding or data-binding
             jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = before();
+
                 jfiveBoard.boardId = boardId;
                 jfiveBoard.port = port;
                 jfiveBoard.repl = repl;
@@ -60,18 +78,142 @@
                 jfiveBoard.timeout = timeout;
                 jfiveBoard.ioPlugin = ioPlugin;
 
-                return jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                after(jfiveBoard);
+
+                return result;
             }), {
                 tests: numTests
             });
 
-            // repl property should be true if the attribute is present or set to true, and false otherwise
+            // repl property should be true if the attribute is present or set to true through the attribute or through a property
+            jsc.check(jsc.forall(jsc.bool, jsc.bool, (trueOrEmpty, attributeOrProperty) => {
+                const jfiveBoard = before();
 
-            // debug property should be true if the attribute is present or set to true, and false otherwise
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('repl', trueOrEmpty ? 'true' : '');
+                }
+                else {
+                    jfiveBoard.repl = true;
+                }
 
-            // timeout property should always be a number if a number string was passed in
+                const result = jfiveBoard.repl === true;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
+
+            // repl property should be false if the attribute or property is set to false
+            jsc.check(jsc.forall(jsc.bool, (attributeOrProperty) => {
+                const jfiveBoard = before();
+
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('repl', 'false');
+                }
+                else {
+                    jfiveBoard.repl = false;
+                }
+
+                const result = jfiveBoard.repl === false;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
+
+            // repl property should be left unchanged if set to anything but true or false through an attribute
+            jsc.check(jsc.forall(jsc.nestring, (randomString) => {
+                const jfiveBoard = before();
+                const originalRepl = jfiveBoard.repl;
+
+                jfiveBoard.setAttribute('repl', randomString);
+
+                const result = jfiveBoard.repl === originalRepl;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
+
+            // debug property should be true if the attribute is present or set to true through the attribute or through a property
+            jsc.check(jsc.forall(jsc.bool, jsc.bool, (trueOrEmpty, attributeOrProperty) => {
+                const jfiveBoard = before();
+
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('debug', trueOrEmpty ? 'true' : '');
+                }
+                else {
+                    jfiveBoard.debug = true;
+                }
+
+                const result = jfiveBoard.debug === true;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
+
+            // debug property should be false if the attribute or property is set to false
+            jsc.check(jsc.forall(jsc.bool, (attributeOrProperty) => {
+                const jfiveBoard = before();
+
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('debug', 'false');
+                }
+                else {
+                    jfiveBoard.debug = false;
+                }
+
+                const result = jfiveBoard.debug === false;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
+
+            // debug property should be left unchanged if set to anything but true or false through an attribute
+            jsc.check(jsc.forall(jsc.nestring, (randomString) => {
+                const jfiveBoard = before();
+                const originalDebug = jfiveBoard.debug;
+
+                jfiveBoard.setAttribute('debug', randomString);
+
+                const result = jfiveBoard.debug === originalDebug;
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
 
             // the board should initialize based on the initial properties
+            jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = before();
+
+                this.removeChild(jfiveBoard);
+
+                jfiveBoard.boardId = boardId;
+                jfiveBoard.port = port;
+                jfiveBoard.repl = repl;
+                jfiveBoard.debug = debug;
+                jfiveBoard.timeout = timeout;
+                jfiveBoard.ioPlugin = ioPlugin;
+
+                this.appendChild(jfiveBoard);
+
+                const result = jfiveBoard.Board.options.id === boardId && jfiveBoard.Board.options.port === port && jfiveBoard.Board.options.repl === repl && jfiveBoard.Board.options.debug === debug && jfiveBoard.Board.options.timeout === timeout && ioPlugin === (ioPlugin ? jfiveBoard.Board.options.io.name : ioPlugin);
+                after(jfiveBoard);
+
+                return result;
+            }), {
+                tests: numTests
+            });
 
             // event handlers should raise the correct events ??
 
