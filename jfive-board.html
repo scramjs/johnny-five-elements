@@ -1,15 +1,4 @@
 <script>
-    // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
-    // TODO this is my own mock
-    const five = {
-        Board: function(options) {
-            console.log('Board options received', options)
-            this.on = () => {
-
-            };
-        }
-    };
-
     class JFiveBoard extends HTMLElement {
         constructor() {
             super();
@@ -26,6 +15,8 @@
             this.debug;
             this.timeout;
             this.Board;
+            this.five = require('johnny-five');
+            this.require = require;
         }
 
         static get observedAttributes() {
@@ -73,13 +64,13 @@
             // before the function inside of the setTimeout is called. In other words, all of this component's properties should be set when this setTimeout function runs
             setTimeout(() => {
                 // initialize the board
-                this.Board = new five.Board({
+                this.Board = new this.five.Board({
                     id: this.boardId,
                     port: this.port,
                     repl: this.repl,
                     debug: this.debug,
                     timeout: this.timeout,
-                    io: this.ioPlugin ? new require(this.ioPlugin) : undefined
+                    io: this.ioPlugin ? new this.require(this.ioPlugin) : undefined
                 });
 
                 // initialize all event handlers, pass the events up to the host element and no further

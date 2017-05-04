@@ -1,0 +1,83 @@
+<link rel="import" href="../jfive-board.html">
+
+<script>
+    class JFiveBoardTest extends HTMLElement {
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            const numTests = 10000;
+            const jsc = require('jsverify');
+
+            // const sinon = require('sinon');
+            // const stub = sinon.stub();
+            // stub.withArgs();
+            // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
+            // TODO this is my own stub, figure out how to use sinon if that would help, which it probably would
+            const fiveStub = {
+                Board: function(options) {
+                    this.on = (name, handler) => {
+                        this[name] = handler;
+                    };
+                }
+            };
+
+            const jfiveBoard = document.createElement('jfive-board');
+            jfiveBoard.five = fiveStub;
+            jfiveBoard.require = function(name) {
+                return name;
+            };
+            this.appendChild(jfiveBoard);
+
+            const arbBoardId = jsc.nestring;
+            const arbPort = jsc.nestring;
+            const arbRepl = jsc.bool;
+            const arbDebug = jsc.bool;
+            const arbTimeout = jsc.nat;
+            const arbIOPlugin = jsc.nestring;
+
+            // check that the properties are all initialized correctly through plain attributes
+            jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
+                jfiveBoard.setAttribute('board-id', boardId);
+                jfiveBoard.setAttribute('port', port);
+                jfiveBoard.setAttribute('repl', repl);
+                jfiveBoard.setAttribute('debug', debug);
+                jfiveBoard.setAttribute('timeout', timeout);
+                jfiveBoard.setAttribute('io-plugin', ioPlugin);
+
+                return jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+            }), {
+                tests: numTests
+            });
+
+            // check that the properties are all initialized correctly through data-binding
+            jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
+                jfiveBoard.boardId = boardId;
+                jfiveBoard.port = port;
+                jfiveBoard.repl = repl;
+                jfiveBoard.debug = debug;
+                jfiveBoard.timeout = timeout;
+                jfiveBoard.ioPlugin = ioPlugin;
+
+                return jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+            }), {
+                tests: numTests
+            });
+
+            // repl property should be true if the attribute is present or set to true, and false otherwise
+
+            // debug property should be true if the attribute is present or set to true, and false otherwise
+
+            // timeout property should always be a number if a number string was passed in
+
+            // the board should initialize based on the initial properties
+
+            // event handlers should raise the correct events ??
+
+            // children should be initialized correctly
+        }
+    }
+
+    window.customElements.define('jfive-board-test', JFiveBoardTest);
+</script>
