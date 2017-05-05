@@ -3,11 +3,6 @@
         constructor() {
             super();
 
-            // this._boardId;
-            // this._port;
-            // this._repl = true;
-            // this._debug = true;
-            // this._timeout = 10;
             this.boardId;
             this.port;
             this.ioPlugin;
@@ -121,55 +116,20 @@
             });
 
             // initialize all children
-            // TODO We should abstract this into a method of its own...and that method should probably just call a function that we share across all components, because
-            // it looks like this is going to be repeated by all children
-            const children = Array.from(this.children);
-            children.forEach((child) => {
-                if (child._jfiveInit) {
-                    child._jfiveInit();
-                }
-            });
-        }
+            const _jfiveInitChildren = () => {
+                const children = Array.from(this.children);
+                children.forEach((child) => {
+                    if (child.boardReadyCallback) {
+                        child.boardReadyCallback();
 
-        // set boardId(val) {
-        //     this._boardId = val;
-        // }
-        //
-        // get boardId() {
-        //     return this._boardId;
-        // }
-        //
-        // set port(val) {
-        //     this._port = val;
-        // }
-        //
-        // get port() {
-        //     return this._port;
-        // }
-        //
-        // set repl(val) {
-        //     this._repl = val;
-        // }
-        //
-        // get repl() {
-        //     return this._repl;
-        // }
-        //
-        // set debug(val) {
-        //     this._debug = val;
-        // }
-        //
-        // get debug() {
-        //     return this._debug;
-        // }
-        //
-        // set timeout(val) {
-        //     this._timeout = val;
-        // }
-        //
-        // get timeout() {
-        //     return this._timeout;
-        // }
+                        // Give the child this initChildren function so that it will initialize all of its children
+                        child._jfiveInitChildren = _jfiveInitChildren;
+                        child._jfiveInitChildren();
+                    }
+                });
+            };
+            _jfiveInitChildren();
+        }
     }
 
     window.customElements.define('jfive-board', JFiveBoard);

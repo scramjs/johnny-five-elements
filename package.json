@@ -21,6 +21,7 @@
   "devDependencies": {
     "jsverify": "^0.8.2",
     "scram-engine": "^0.4.6",
-    "sinon": "^2.2.0"
+    "sinon": "^2.2.0",
+    "tape": "^4.6.3"
   }
 }
