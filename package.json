@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "jsverify": "^0.8.2",
-    "scram-engine": "git+ssh://git@github.com/scramjs/scram-engine.git",
+    "scram-engine": "^0.5.0",
     "sinon": "^2.2.0",
     "tape": "^4.6.3"
   }
