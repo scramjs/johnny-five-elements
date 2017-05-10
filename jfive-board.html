@@ -116,19 +116,19 @@
             });
 
             // initialize all children
-            const _jfiveInitChildren = () => {
-                const children = Array.from(this.children);
+            const _jfiveInitChildren = (element) => {
+                const children = Array.from(element.children);
                 children.forEach((child) => {
                     if (child.boardReadyCallback) {
                         child.boardReadyCallback();
 
                         // Give the child this initChildren function so that it will initialize all of its children
                         child._jfiveInitChildren = _jfiveInitChildren;
-                        child._jfiveInitChildren();
+                        child._jfiveInitChildren(child);
                     }
                 });
             };
-            _jfiveInitChildren();
+            _jfiveInitChildren(this);
         }
     }
 

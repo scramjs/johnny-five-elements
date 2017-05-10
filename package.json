@@ -3,7 +3,7 @@
   "version": "0.0.8",
   "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
   "scripts": {
-    "test": "electron node_modules/scram-engine/main.js --entry-file test/index.html --window"
+    "test": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "jsverify": "^0.8.2",
-    "scram-engine": "^0.4.6",
+    "scram-engine": "git+ssh://git@github.com/scramjs/scram-engine.git",
     "sinon": "^2.2.0",
     "tape": "^4.6.3"
   }
