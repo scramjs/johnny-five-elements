@@ -299,7 +299,12 @@
                         this.removeChild(jfiveBoard); // remove jfiveBoard from the DOM so that we can control when the connectedCallback is invoked
                         const jfiveBoardWithChildren = createChildHierarchy(jfiveBoard, numChildrenPerLevel, numLevels);
                         this.appendChild(jfiveBoardWithChildren); // invoke the connectedCallback so that we can test to make sure that all children have been initialized
-                        return allChildrenInitialized(jfiveBoardWithChildren);
+                        
+                        const result = allChildrenInitialized(jfiveBoardWithChildren);
+                        
+                        this._afterTest(jfiveBoardWithChildren);
+                        
+                        return result;
 
                         function allChildrenInitialized(element) {
                             const children = Array.from(element.children);
