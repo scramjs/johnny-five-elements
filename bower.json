@@ -1,0 +1,20 @@
+{
+  "name": "jfive-web-components",
+  "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
+  "main": "",
+  "authors": [
+    "Jordan Last <jordan.michael.last@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/scramjs/jfive-web-components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "guesswork": "^0.0.3"
+  }
+}

@@ -3,7 +3,8 @@
   "version": "0.0.8",
   "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
   "scripts": {
-    "test": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window"
+    "test": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
+    "link": "npm link && npm link jfive-web-components"
   },
   "repository": {
     "type": "git",

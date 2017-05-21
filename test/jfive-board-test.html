@@ -1,4 +1,4 @@
-<link rel="import" href="../jfive-board.html">
+<link rel="import" href="../node_modules/jfive-web-components/jfive-board.html">
 
 <script>
     class JFiveBoardTest extends HTMLElement {
@@ -290,63 +290,68 @@
                 });
             });
 
-            //TODO make this whole function and all of its sub-functions more declarative
-            //TODO perhaps add some comments that explain what is happening
-            // test('static children should be initialized correctly', (assert) => {
-            //     const result = jsc.check(jsc.forall(jsc.number, jsc.number, (numChildrenPerLevel, numLevels) => {
-            //         const jfiveBoard = this._beforeTest();
-            //         this.removeChild(jfiveBoard); // remove jfiveBoard from the DOM so that we can control when the connectedCallback is invoked
-            //         const jfiveBoardWithChildren = createChildHierarchy(jfiveBoard, 1, 1);
-            //         this.appendChild(jfiveBoardWithChildren); // invoke the connectedCallback so that we can test to make sure that all children have been initialized
-            //         return allChildrenInitialized(jfiveBoardWithChildren);
-            //
-            //         function allChildrenInitialized(element) {
-            //             const children = Array.from(element.children);
-            //             if (children.length === 0) return true;
-            //
-            //             const allInitialized = children.reduce((result, child) => {
-            //                 if (!child.boardReadyCalled) return false;
-            //                 return result;
-            //             }, true);
-            //
-            //             return allInitialized && children.reduce((result, child) => {
-            //                 const allInitialized = allChildrenInitialized(child);
-            //                 if (!allInitialized) return false;
-            //                 return result;
-            //             }, true);
-            //         }
-            //
-            //         // TODO this is really messy and not very declarative. Fix it
-            //         function createChildHierarchy(element, numChildrenPerLevel, numLevels) {
-            //             if (numLevels === 0) {
-            //                 return element;
-            //             }
-            //
-            //             const children = new Array(numChildrenPerLevel).fill(null).map(() => {
-            //                 const child = document.createElement('div');
-            //                 child.boardReadyCallback = () => child.boardReadyCalled = true;
-            //                 return child;
-            //             });
-            //
-            //             const newElement = children.reduce((result, child) => {
-            //                 result.appendChild(child);
-            //                 return result;
-            //             }, element);
-            //
-            //             children.forEach((child) => {
-            //                 createChildHierarchy(child, numChildrenPerLevel, numLevels - 1);
-            //             });
-            //
-            //             return newElement;
-            //         }
-            //     }), {
-            //         tests: numTests
-            //     });
-            //
-            //     assert.equal(result, true);
-            //     assert.end();
-            // });
+            // this function builds a hierarchy of child nodes inside of a jfive-board component, emulating the structure of a real application
+            // once the board is loaded into the DOM it should initialize all children by calling each child's boardReadyCallback
+            testWrap('static children should be initialized correctly', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nat(5), jsc.nat(5), (numChildrenPerLevel, numLevels) => {
+                        const jfiveBoard = this._beforeTest();
+                        this.removeChild(jfiveBoard); // remove jfiveBoard from the DOM so that we can control when the connectedCallback is invoked
+                        const jfiveBoardWithChildren = createChildHierarchy(jfiveBoard, numChildrenPerLevel, numLevels);
+                        this.appendChild(jfiveBoardWithChildren); // invoke the connectedCallback so that we can test to make sure that all children have been initialized
+                        return allChildrenInitialized(jfiveBoardWithChildren);
 
+                        function allChildrenInitialized(element) {
+                            const children = Array.from(element.children);
+                            if (children.length === 0) return true;
+
+                            const allInitialized = children.reduce((result, child) => {
+                                if (!child.boardReadyCalled) return false;
+                                return result;
+                            }, true);
+
+                            return allInitialized && children.reduce((result, child) => {
+                                const allInitialized = allChildrenInitialized(child);
+                                if (!allInitialized) return false;
+                                return result;
+                            }, true);
+                        }
+
+                        function createChildHierarchy(element, numChildrenPerLevel, numLevels) {
+                            if (numLevels === 0) {
+                                return element;
+                            }
+
+                            const children = new Array(numChildrenPerLevel).fill(null).map(() => {
+                                const child = document.createElement('div');
+                                child.boardReadyCallback = () => child.boardReadyCalled = true;
+                                return child;
+                            });
+
+                            const newElement = children.reduce((result, child) => {
+                                result.appendChild(child);
+                                return result;
+                            }, element);
+
+                            //TODO I would like to figure out how to do this with a map or reduce or such, making it more functional/declarative/recursive
+                            children.forEach((child) => {
+                                createChildHierarchy(child, numChildrenPerLevel, numLevels - 1);
+                            });
+
+                            return newElement;
+                        }
+                    }), {
+                        tests: numTests
+                    });
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+
+            });
+
+            //TODO thing about static versus dynamic children...light DOM, local DOM, etc...is there a difference between statically declared children and children added dynamically to the DOM?
+            //TODO we might not have to worry about dynamic children...actually, we should allow for dynamic children added to have their boardReadyCallbacks called
             // test('dynamic children should be initialized correctly', (assert) => {
             //     const result = jsc.check(jsc.forall(() => {
             //         return false;
