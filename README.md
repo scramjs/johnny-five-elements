@@ -6,15 +6,12 @@ Web components for controlling hardware with the [Johnny-Five JavaScript Robotic
 
 Here is the concept:
 ```HTML
-<jfive-pin pin="GPIO3" input="true"></jfive-pin>
-
-<jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
-  
-<jfive-button pin="GPIO23" on-push="buttonPush"></jfive-button>
-  
-<jfive-motor on="true" speed="128" reverse pwm-pin="GPIO18" dir-pin="GPIO21" cdir-pin="GPIO22"></jfive-motor>
-  
-<jfive-servo></jfive-servo>
+<jfive-board>
+  <jfive-pin pin="GPIO3" input="true"></jfive-pin>
+  <jfive-led pin="GPIO21" interval="500" brightness="50"></jfive-led>
+  <jfive-button pin="GPIO23" on-push="buttonPush"></jfive-button>
+  <jfive-motor on="[[motorOn]]" speed="128" pwm-pin="GPIO18" dir-pin="GPIO21" cdir-pin="GPIO22" reverse></jfive-motor>
+</jfive-board>
 ```
 
 We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#components). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
@@ -27,8 +24,7 @@ For more background information, see the following resources:
 # Installation
 
 ```
-bower install --save jfive-web-components
-npm install --save johnny-five
+npm install --save jfive-web-components
 ```
 
 # Use
