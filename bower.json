@@ -1,7 +1,7 @@
 {
   "name": "jfive-web-components",
-  "version": "0.0.8",
   "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
+  "main": "",
   "authors": [
     "Jordan Last <jordan.michael.last@gmail.com>"
   ],
@@ -14,7 +14,7 @@
     "test",
     "tests"
   ],
-  "dependencies": {
-    "polymer": "^1.7.0"
+  "devDependencies": {
+    "guesswork": "^0.0.3"
   }
 }

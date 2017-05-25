@@ -1,0 +1,136 @@
+<script>
+    class JFiveBoard extends HTMLElement {
+        constructor() {
+            super();
+
+            this.boardId;
+            this.port;
+            this.ioPlugin;
+            this.repl;
+            this.debug;
+            this.timeout;
+            this.Board;
+            this.five = require('johnny-five');
+            this.require = require;
+        }
+
+        static get observedAttributes() {
+            return [
+                'board-id',
+                'port',
+                'repl',
+                'debug',
+                'timeout',
+                'io-plugin'
+            ];
+        }
+
+        attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+                case 'board-id': {
+                    this.boardId = newValue;
+                    break;
+                }
+                case 'port': {
+                    this.port = newValue;
+                    break;
+                }
+                case 'repl': {
+                    this.repl = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.repl;
+                    break;
+                }
+                case 'debug': {
+                    this.debug = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.debug;
+                    break;
+                }
+                case 'timeout': {
+                    this.timeout = parseInt(newValue, 10);
+                    break;
+                }
+                case 'io-plugin': {
+                    this.ioPlugin = newValue;
+                    break;
+                }
+            }
+        }
+
+        connectedCallback() {
+            // initialize the board
+            this.Board = new this.five.Board({
+                id: this.boardId,
+                port: this.port,
+                repl: this.repl,
+                debug: this.debug,
+                timeout: this.timeout,
+                io: this.ioPlugin ? new this.require(this.ioPlugin) : undefined
+            });
+
+            // initialize all event handlers, pass the events up to the host element and no further
+            this.Board.on('connect', (event) => {
+                this.dispatchEvent(new CustomEvent('connect', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('ready', (event) => {
+                this.dispatchEvent(new CustomEvent('ready', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('exit', (event) => {
+                this.dispatchEvent(new CustomEvent('exit', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('info', (event) => {
+                this.dispatchEvent(new CustomEvent('info', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('warn', (event) => {
+                this.dispatchEvent(new CustomEvent('warn', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('fail', (event) => {
+                this.dispatchEvent(new CustomEvent('fail', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            this.Board.on('message', (event) => {
+                this.dispatchEvent(new CustomEvent('message', {
+                    detail: event,
+                    bubbles: false
+                }));
+            });
+
+            // initialize all children
+            const _jfiveInitChildren = (element) => {
+                const children = Array.from(element.children);
+                children.forEach((child) => {
+                    if (child.boardReadyCallback) {
+                        child.boardReadyCallback();
+
+                        // Give the child this initChildren function so that it will initialize all of its children
+                        child._jfiveInitChildren = _jfiveInitChildren;
+                        child._jfiveInitChildren(child);
+                    }
+                });
+            };
+            _jfiveInitChildren(this);
+        }
+    }
+
+    window.customElements.define('jfive-board', JFiveBoard);
+</script>
