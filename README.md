@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components)
+
 # JFive Web Components
 
 Web components for controlling hardware with the [Johnny-Five JavaScript Robotics & IoT platform](http://johnny-five.io/). Build hardware declaratively with custom elements!
