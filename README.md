@@ -1,5 +1,6 @@
 # JFive Web Components
 
+
 Web components for controlling hardware with the [Johnny-Five JavaScript Robotics & IoT platform](http://johnny-five.io/). Build hardware declaratively with custom elements!
 
 # Introduction
@@ -52,7 +53,7 @@ sudo su
 ```
 
 To understand which pins are available for use on the Raspberry Pi 3, use the following pin layout:
-http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o 
+http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o
 Documentation for more devices and pin layouts may come later.
 
 # Components
@@ -139,11 +140,11 @@ Here are some example applications written with JFive Web Components:
 Here are the things we are working towards. An item is being worked on if there is a check next to `Active development by`. If you would like to contribute, open an issue with the name of an item that is not being worked on and we'll have it assigned to you:
 
 - [ ] Accelerometer component
-  - [ ] Active development by: 
-  * Discussion under: 
+  - [ ] Active development by:
+  * Discussion under:
 - [ ] Altimeter component
-  - [ ] Active development by: 
-  * Discussion under: 
+  - [ ] Active development by:
+  * Discussion under:
 - [ ] Animation component
   - [ ] Active development by:
   * Discussion under:
@@ -157,7 +158,7 @@ Here are the things we are working towards. An item is being worked on if there 
   - [x] Active development by: [bdemann](https://github.com/bdemann)
   * Discussion under: [#17](https://github.com/scramjs/jfive-web-components/issues/17)
 - [ ] Compass component
-  - [ ] Active development by: 
+  - [ ] Active development by:
   * Discussion under:
 - [ ] ESC component
   - [ ] Active development by:
