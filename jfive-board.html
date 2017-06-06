@@ -6,7 +6,7 @@
             this.boardId;
             this.port;
             this.ioPlugin;
-            this.repl;
+            this.replOn;
             this.debug;
             this.timeout;
             this.Board;
@@ -18,7 +18,7 @@
             return [
                 'board-id',
                 'port',
-                'repl',
+                'repl-on',
                 'debug',
                 'timeout',
                 'io-plugin'
@@ -35,8 +35,8 @@
                     this.port = newValue;
                     break;
                 }
-                case 'repl': {
-                    this.repl = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.repl;
+                case 'repl-on': {
+                    this.replOn = newValue === '' || newValue === 'true' ? true : newValue === 'false' ? false : this.replOn;
                     break;
                 }
                 case 'debug': {
@@ -54,12 +54,16 @@
             }
         }
 
+        get repl() {
+            return this.Board.repl;
+        }
+
         connectedCallback() {
             // initialize the board
             this.Board = new this.five.Board({
                 id: this.boardId,
                 port: this.port,
-                repl: this.repl,
+                repl: this.replOn,
                 debug: this.debug,
                 timeout: this.timeout,
                 io: this.ioPlugin ? new this.require(this.ioPlugin) : undefined
@@ -129,6 +133,79 @@
                 });
             };
             _jfiveInitChildren(this);
+        }
+
+        info() {
+            // spreading the arguments here because Board.info has optional parameters
+            this.Board.info(...arguments);
+        }
+
+        warn() {
+            // spreading the arguments here because Board.warn has optional parameters
+            this.Board.warn(...arguments);
+        }
+
+        fail() {
+            this.Board.fail(...arguments);
+        }
+
+        pinMode(pin, mode) {
+            this.Board.pinMode(pin, mode);
+        }
+
+        analogWrite(pin, value) {
+            this.Board.analogWrite(pin, value);
+        }
+
+        analogRead(pin, handler) {
+            this.Board.analogRead(pin, handler);
+        }
+
+        digitalWrite(pin, value) {
+            this.Board.digitalWrite(pin, value);
+        }
+
+        digitalRead(pin, handler) {
+            this.Board.digitalRead(pin, handler);
+        }
+
+        i2cConfig(millisecondsOrOptions) {
+            this.Board.i2cConfig(millisecondsOrOptions);
+        }
+
+        i2cWrite() {
+            // spreading the arguments here because Board.i2cWrite is overloaded (multiple method definitions that take different parameters)
+            this.Board.i2cWrite(...arguments);
+        }
+
+        i2cWriteReg(address, register, byte) {
+            this.Board.i2cWriteReg(address, register, byte);
+        }
+
+        i2cRead() {
+            // spreading the arguments here because Board.i2cRead is overloaded (multiple method definitions that take different parameters)
+            this.Board.i2cRead(...arguments);
+        }
+
+        i2cReadOnce() {
+            // spreading the arguments here because Board.i2cReadOnce is overloaded (multiple method definitions that take different parameters)
+            this.Board.i2cReadOnce(...arguments);
+        }
+
+        servoWrite(pin, angle) {
+            this.Board.servoWrite(pin, angle);
+        }
+
+        shiftOut(dataPin, clockPin, isBigEndian, value) {
+            this.Board.shiftOut(dataPin, clockPin, isBigEndian, value);
+        }
+
+        wait(milliseconds, handler) {
+            this.Board.wait(milliseconds, handler);
+        }
+
+        loop(milliseconds, handler) {
+            this.Board.loop(milliseconds, handler);
         }
     }
 

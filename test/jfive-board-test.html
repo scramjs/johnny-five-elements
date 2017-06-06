@@ -49,12 +49,12 @@
 
                         jfiveBoard.setAttribute('board-id', boardId);
                         jfiveBoard.setAttribute('port', port);
-                        jfiveBoard.setAttribute('repl', repl);
+                        jfiveBoard.setAttribute('repl-on', repl);
                         jfiveBoard.setAttribute('debug', debug);
                         jfiveBoard.setAttribute('timeout', timeout);
                         jfiveBoard.setAttribute('io-plugin', ioPlugin);
 
-                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
                         this._afterTest(jfiveBoard);
 
                         return result;
@@ -80,12 +80,12 @@
 
                         jfiveBoard.boardId = boardId;
                         jfiveBoard.port = port;
-                        jfiveBoard.repl = repl;
+                        jfiveBoard.replOn = repl;
                         jfiveBoard.debug = debug;
                         jfiveBoard.timeout = timeout;
                         jfiveBoard.ioPlugin = ioPlugin;
 
-                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.repl === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
                         this._afterTest(jfiveBoard);
 
                         return result;
@@ -110,13 +110,13 @@
                         const jfiveBoard = this._beforeTest();
 
                         if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('repl', trueOrEmpty ? 'true' : '');
+                            jfiveBoard.setAttribute('repl-on', trueOrEmpty ? 'true' : '');
                         }
                         else {
-                            jfiveBoard.repl = true;
+                            jfiveBoard.replOn = true;
                         }
 
-                        const result = jfiveBoard.repl === true;
+                        const result = jfiveBoard.replOn === true;
                         this._afterTest(jfiveBoard);
 
                         return result;
@@ -141,13 +141,13 @@
                         const jfiveBoard = this._beforeTest();
 
                         if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('repl', 'false');
+                            jfiveBoard.setAttribute('repl-on', 'false');
                         }
                         else {
-                            jfiveBoard.repl = false;
+                            jfiveBoard.replOn = false;
                         }
 
-                        const result = jfiveBoard.repl === false;
+                        const result = jfiveBoard.replOn === false;
                         this._afterTest(jfiveBoard);
 
                         return result;
@@ -172,9 +172,9 @@
                         const jfiveBoard = this._beforeTest();
                         const originalRepl = jfiveBoard.repl;
 
-                        jfiveBoard.setAttribute('repl', randomString);
+                        jfiveBoard.setAttribute('repl-on', randomString);
 
-                        const result = jfiveBoard.repl === originalRepl;
+                        const result = jfiveBoard.replOn === originalRepl;
                         this._afterTest(jfiveBoard);
 
                         return result;
@@ -291,7 +291,7 @@
 
                         jfiveBoard.boardId = boardId;
                         jfiveBoard.port = port;
-                        jfiveBoard.repl = repl;
+                        jfiveBoard.replOn = repl;
                         jfiveBoard.debug = debug;
                         jfiveBoard.timeout = timeout;
                         jfiveBoard.ioPlugin = ioPlugin;
@@ -433,6 +433,38 @@
             //
             //     assert.equal(result, true);
             //     assert.end();
+            // });
+
+            // testWrap('info method passes parameters to Board info', (test, description, numTests) => {
+            //     test(description, (assert) => {
+            //         const result = jsc.check(jsc.forall(jsc.nestring, jsc.nestring, jsc.elements([1, 'test', {
+            //             test: 5
+            //         }]), (theClass, message, details) => {
+            //             const jfiveBoard = this._beforeTest();
+            //
+            //             jfiveBoard.info('hello'); //TODO careful, info is being set on the test object because of the info event. Rethink how to test the events and these methods
+            //
+            //             // jfiveBoard.info(theClass, message, ...details);
+            //
+            //             const result = true; //TODO I really need to figure out how to spy or mock or stub appropriately
+            //
+            //             // const result = jfiveBoard.info.
+            //             this._afterTest(jfiveBoard);
+            //
+            //             return result;
+            //         }), {
+            //             tests: numTests
+            //         });
+            //
+            //         //TODO remove this once tape gives an indication of failed tests
+            //         //TODO figure out how to abstract away talking to the main electron process
+            //         if (result !== true) {
+            //             ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+            //         }
+            //
+            //         assert.equal(result, true);
+            //         assert.end();
+            //     });
             // });
         }
 
