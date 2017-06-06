@@ -20,6 +20,7 @@ We are currently working to support the entire Johnny-Five API. See which compon
 
 For more background information, see the following resources:
 * [Universal Web Components article](https://scotch.io/bar-talk/universal-web-components)
+* [Universal Web Components video presentation](https://www.youtube.com/watch?v=2eJkKJMSDCU&t=452s)
 * [Server-side Web Components article](https://scotch.io/tutorials/server-side-web-components-how-and-why)
 * [React Hardware article](http://iamdustan.com/2015/12/16/react-hardware/)
 
