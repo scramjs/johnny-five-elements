@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components)
+[![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components) [![dependency Status](https://david-dm.org/scramjs/jfive-web-components/status.svg)](https://david-dm.org/scramjs/jfive-web-components) [![devDependency Status](https://david-dm.org/scramjs/jfive-web-components/dev-status.svg)](https://david-dm.org/scramjs/jfive-web-components?type=dev)
 
 # JFive Web Components
 
