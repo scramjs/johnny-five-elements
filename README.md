@@ -25,7 +25,7 @@ For more background information, see the following resources:
 
 # Installation
 
-```
+```bash
 npm install --save jfive-web-components
 ```
 
@@ -37,7 +37,7 @@ These components can be run on a variety of devices using [Scram.js](https://git
 
 You'll need to install the Raspberry Pi IO plugin:
 
-```
+```bash
 npm install --save raspi-io
 ```
 
@@ -49,7 +49,7 @@ Indicate your use of the Raspberry Pi IO plugin from your top-level `jfive-board
 ```
 
 You must be the root user while using these components:
-```
+```bash
 sudo su
 ```
 
