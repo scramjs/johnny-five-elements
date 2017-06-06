@@ -242,9 +242,9 @@ Here are the things we are working towards. An item is being worked on if there 
 - [ ] Thermometer component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Property-based testing structure
-  - [x] Active development by: [lastmjs](https://github.com/lastmjs)
-  * Discussion under: [#18](https://github.com/scramjs/jfive-web-components/issues/18)
+- [ ] ~~Property-based testing structure~~
+  - [x] ~~Active development by: [lastmjs](https://github.com/lastmjs)~~
+  * ~~Discussion under: [#18](https://github.com/scramjs/jfive-web-components/issues/18)~~
 
 ## Acknowledgements
 
