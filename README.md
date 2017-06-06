@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components)
+[![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components) [![dependency Status](https://david-dm.org/scramjs/jfive-web-components/status.svg)](https://david-dm.org/scramjs/jfive-web-components) [![devDependency Status](https://david-dm.org/scramjs/jfive-web-components/dev-status.svg)](https://david-dm.org/scramjs/jfive-web-components?type=dev)
 
 # JFive Web Components
 
@@ -242,7 +242,7 @@ Here are the things we are working towards. An item is being worked on if there 
 - [ ] Thermometer component
   - [ ] Active development by:
   * Discussion under:
-- [ ] Property-based testing structure
+- [x] Property-based testing structure
   - [x] Active development by: [lastmjs](https://github.com/lastmjs)
   * Discussion under: [#18](https://github.com/scramjs/jfive-web-components/issues/18)
 
