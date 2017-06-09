@@ -25,6 +25,7 @@
     "jsverify": "^0.8.2",
     "scram-engine": "^0.6.1",
     "sinon": "^2.2.0",
-    "tape": "^4.6.3"
+    "tape": "^4.6.3",
+    "testdouble": "^3.0.0"
   }
 }

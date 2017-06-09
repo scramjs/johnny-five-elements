@@ -1,29 +1,22 @@
 <link rel="import" href="../node_modules/jfive-web-components/jfive-board.html">
 
 <script>
+    const td = require('testdouble');
+    const jsc = require('jsverify');
+    const {ipcRenderer} = require('electron');
+    const johnnyFive = require('johnny-five');
+
     class JFiveBoardTest extends HTMLElement {
         _beforeTest() {
-            // const sinon = require('sinon');
-            // const stub = sinon.stub();
-            // stub.withArgs();
-            // TODO figure out mocking, spieing, or whatever needs to happen to test this component without the jonny-five library connecting to the physical board
-            // TODO this is my own stub, figure out how to use sinon if that would help, which it probably would
-            const fiveStub = {
-                Board: function(options) {
-                    this.options = options;
-                    this.on = (name, handler) => {
-                        this[name] = handler;
-                    };
-                }
+            const fiveMock = {
+                Board: td.constructor(johnnyFive.Board)
             };
-
             const jfiveBoard = document.createElement('jfive-board');
-            jfiveBoard.five = fiveStub;
+            jfiveBoard.five = fiveMock;
             jfiveBoard.require = function(name) {
                 this.name = name;
             };
             this.appendChild(jfiveBoard);
-
             return jfiveBoard;
         }
 
@@ -32,9 +25,6 @@
         }
 
         prepareTests(testWrap) {
-            const jsc = require('jsverify');
-            const {ipcRenderer} = require('electron');
-
             const arbBoardId = jsc.nestring;
             const arbPort = jsc.nestring;
             const arbRepl = jsc.bool;
@@ -298,10 +288,18 @@
 
                         this.appendChild(jfiveBoard);
 
-                        const result = jfiveBoard.Board.options.id === boardId && jfiveBoard.Board.options.port === port && jfiveBoard.Board.options.repl === repl && jfiveBoard.Board.options.debug === debug && jfiveBoard.Board.options.timeout === timeout && ioPlugin === (ioPlugin ? jfiveBoard.Board.options.io.name : ioPlugin);
+                        td.verify(new jfiveBoard.five.Board({
+                            id: boardId,
+                            port,
+                            repl,
+                            debug,
+                            timeout,
+                            io: ioPlugin ? new jfiveBoard.require(ioPlugin) : undefined
+                        }));
+
                         this._afterTest(jfiveBoard);
 
-                        return result;
+                        return true;
                     }), {
                         tests: numTests
                     });
@@ -435,37 +433,37 @@
             //     assert.end();
             // });
 
-            // testWrap('info method passes parameters to Board info', (test, description, numTests) => {
-            //     test(description, (assert) => {
-            //         const result = jsc.check(jsc.forall(jsc.nestring, jsc.nestring, jsc.elements([1, 'test', {
-            //             test: 5
-            //         }]), (theClass, message, details) => {
-            //             const jfiveBoard = this._beforeTest();
-            //
-            //             jfiveBoard.info('hello'); //TODO careful, info is being set on the test object because of the info event. Rethink how to test the events and these methods
-            //
-            //             // jfiveBoard.info(theClass, message, ...details);
-            //
-            //             const result = true; //TODO I really need to figure out how to spy or mock or stub appropriately
-            //
-            //             // const result = jfiveBoard.info.
-            //             this._afterTest(jfiveBoard);
-            //
-            //             return result;
-            //         }), {
-            //             tests: numTests
-            //         });
-            //
-            //         //TODO remove this once tape gives an indication of failed tests
-            //         //TODO figure out how to abstract away talking to the main electron process
-            //         if (result !== true) {
-            //             ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-            //         }
-            //
-            //         assert.equal(result, true);
-            //         assert.end();
-            //     });
-            // });
+            testWrap('info method passes parameters to Board info', (test, description, numTests) => {
+                test(description, (assert) => {
+                    const result = jsc.check(jsc.forall(jsc.nestring, jsc.nestring, jsc.elements([1, 'test', {
+                        test: 5
+                    }]), (theClass, message, details) => {
+                        const jfiveBoard = this._beforeTest();
+
+                        // jfiveBoard.Board = td.object(jfiveBoard.Board);
+
+                        console.log(jfiveBoard.Board);
+
+                        jfiveBoard.info(theClass, message, ...details);
+                        const result = td.verify(jfiveBoard.Board.info(theClass, message, ...details));
+
+                        this._afterTest(jfiveBoard);
+
+                        return result;
+                    }), {
+                        tests: numTests
+                    });
+
+                    //TODO remove this once tape gives an indication of failed tests
+                    //TODO figure out how to abstract away talking to the main electron process
+                    // if (result !== true) {
+                    //     ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                    // }
+
+                    assert.equal(result, true);
+                    assert.end();
+                });
+            });
         }
 
     }
