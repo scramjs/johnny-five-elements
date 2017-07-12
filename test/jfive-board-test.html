@@ -24,7 +24,7 @@
             this.removeChild(jfiveBoard);
         }
 
-        prepareTests(testWrap) {
+        prepareTests(test) {
             const arbBoardId = jsc.nestring;
             const arbPort = jsc.nestring;
             const arbRepl = jsc.bool;
@@ -32,392 +32,226 @@
             const arbTimeout = jsc.nat;
             const arbIOPlugin = jsc.string;
 
-            testWrap('check that the properties are all initialized correctly through plain attributes', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
-                        const jfiveBoard = this._beforeTest();
+            test('check that the properties are all initialized correctly through plain attributes', [arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin], (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = this._beforeTest();
 
-                        jfiveBoard.setAttribute('board-id', boardId);
-                        jfiveBoard.setAttribute('port', port);
-                        jfiveBoard.setAttribute('repl-on', repl);
-                        jfiveBoard.setAttribute('debug', debug);
-                        jfiveBoard.setAttribute('timeout', timeout);
-                        jfiveBoard.setAttribute('io-plugin', ioPlugin);
+                jfiveBoard.setAttribute('board-id', boardId);
+                jfiveBoard.setAttribute('port', port);
+                jfiveBoard.setAttribute('repl-on', repl);
+                jfiveBoard.setAttribute('debug', debug);
+                jfiveBoard.setAttribute('timeout', timeout);
+                jfiveBoard.setAttribute('io-plugin', ioPlugin);
 
-                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('check that the properties are all initialized correctly through property binding or data-binding', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
-                        const jfiveBoard = this._beforeTest();
+            test('check that the properties are all initialized correctly through property binding or data-binding', [arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin], (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = this._beforeTest();
 
-                        jfiveBoard.boardId = boardId;
-                        jfiveBoard.port = port;
-                        jfiveBoard.replOn = repl;
-                        jfiveBoard.debug = debug;
-                        jfiveBoard.timeout = timeout;
-                        jfiveBoard.ioPlugin = ioPlugin;
+                jfiveBoard.boardId = boardId;
+                jfiveBoard.port = port;
+                jfiveBoard.replOn = repl;
+                jfiveBoard.debug = debug;
+                jfiveBoard.timeout = timeout;
+                jfiveBoard.ioPlugin = ioPlugin;
 
-                        const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.boardId === boardId && jfiveBoard.port === port && jfiveBoard.replOn === repl && jfiveBoard.debug === debug && jfiveBoard.timeout === timeout && jfiveBoard.ioPlugin === ioPlugin;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('repl property should be true if the attribute is present or set to true through the attribute or through a property', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.bool, jsc.bool, (trueOrEmpty, attributeOrProperty) => {
-                        const jfiveBoard = this._beforeTest();
+            test('repl property should be true if the attribute is present or set to true through the attribute or through a property', [jsc.bool, jsc.bool], (trueOrEmpty, attributeOrProperty) => {
+                const jfiveBoard = this._beforeTest();
 
-                        if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('repl-on', trueOrEmpty ? 'true' : '');
-                        }
-                        else {
-                            jfiveBoard.replOn = true;
-                        }
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('repl-on', trueOrEmpty ? 'true' : '');
+                }
+                else {
+                    jfiveBoard.replOn = true;
+                }
 
-                        const result = jfiveBoard.replOn === true;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.replOn === true;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('repl property should be false if the attribute or property is set to false', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.bool, (attributeOrProperty) => {
-                        const jfiveBoard = this._beforeTest();
+            test('repl property should be false if the attribute or property is set to false', [jsc.bool], (attributeOrProperty) => {
+                const jfiveBoard = this._beforeTest();
 
-                        if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('repl-on', 'false');
-                        }
-                        else {
-                            jfiveBoard.replOn = false;
-                        }
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('repl-on', 'false');
+                }
+                else {
+                    jfiveBoard.replOn = false;
+                }
 
-                        const result = jfiveBoard.replOn === false;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.replOn === false;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('repl property should be left unchanged if set to anything but true or false through an attribute', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nestring, (randomString) => {
-                        const jfiveBoard = this._beforeTest();
-                        const originalRepl = jfiveBoard.repl;
+            test('repl property should be left unchanged if set to anything but true or false through an attribute', [jsc.nestring], (randomString) => {
+                const jfiveBoard = this._beforeTest();
+                const originalRepl = jfiveBoard.repl;
 
-                        jfiveBoard.setAttribute('repl-on', randomString);
+                jfiveBoard.setAttribute('repl-on', randomString);
 
-                        const result = jfiveBoard.replOn === originalRepl;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.replOn === originalRepl;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('debug property should be true if the attribute is present or set to true through the attribute or through a property', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.bool, jsc.bool, (trueOrEmpty, attributeOrProperty) => {
-                        const jfiveBoard = this._beforeTest();
+            test('debug property should be true if the attribute is present or set to true through the attribute or through a property', [jsc.bool, jsc.bool], (trueOrEmpty, attributeOrProperty) => {
+                const jfiveBoard = this._beforeTest();
 
-                        if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('debug', trueOrEmpty ? 'true' : '');
-                        }
-                        else {
-                            jfiveBoard.debug = true;
-                        }
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('debug', trueOrEmpty ? 'true' : '');
+                }
+                else {
+                    jfiveBoard.debug = true;
+                }
 
-                        const result = jfiveBoard.debug === true;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.debug === true;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('debug property should be false if the attribute or property is set to false', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.bool, (attributeOrProperty) => {
-                        const jfiveBoard = this._beforeTest();
+            test('debug property should be false if the attribute or property is set to false', [jsc.bool], (attributeOrProperty) => {
+                const jfiveBoard = this._beforeTest();
 
-                        if (attributeOrProperty) {
-                            jfiveBoard.setAttribute('debug', 'false');
-                        }
-                        else {
-                            jfiveBoard.debug = false;
-                        }
+                if (attributeOrProperty) {
+                    jfiveBoard.setAttribute('debug', 'false');
+                }
+                else {
+                    jfiveBoard.debug = false;
+                }
 
-                        const result = jfiveBoard.debug === false;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.debug === false;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('debug property should be left unchanged if set to anything but true or false through an attribute', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nestring, (randomString) => {
-                        const jfiveBoard = this._beforeTest();
-                        const originalDebug = jfiveBoard.debug;
+            test('debug property should be left unchanged if set to anything but true or false through an attribute', [jsc.nestring], (randomString) => {
+                const jfiveBoard = this._beforeTest();
+                const originalDebug = jfiveBoard.debug;
 
-                        jfiveBoard.setAttribute('debug', randomString);
+                jfiveBoard.setAttribute('debug', randomString);
 
-                        const result = jfiveBoard.debug === originalDebug;
-                        this._afterTest(jfiveBoard);
+                const result = jfiveBoard.debug === originalDebug;
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
 
-            testWrap('the board should initialize based on the initial properties', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin, (boardId, port, repl, debug, timeout, ioPlugin) => {
-                        const jfiveBoard = this._beforeTest();
+            test('the board should initialize based on the initial properties', [arbBoardId, arbPort, arbRepl, arbDebug, arbTimeout, arbIOPlugin], (boardId, port, repl, debug, timeout, ioPlugin) => {
+                const jfiveBoard = this._beforeTest();
 
-                        this.removeChild(jfiveBoard);
+                this.removeChild(jfiveBoard);
 
-                        jfiveBoard.boardId = boardId;
-                        jfiveBoard.port = port;
-                        jfiveBoard.replOn = repl;
-                        jfiveBoard.debug = debug;
-                        jfiveBoard.timeout = timeout;
-                        jfiveBoard.ioPlugin = ioPlugin;
+                jfiveBoard.boardId = boardId;
+                jfiveBoard.port = port;
+                jfiveBoard.replOn = repl;
+                jfiveBoard.debug = debug;
+                jfiveBoard.timeout = timeout;
+                jfiveBoard.ioPlugin = ioPlugin;
 
-                        this.appendChild(jfiveBoard);
+                this.appendChild(jfiveBoard);
 
-                        td.verify(new jfiveBoard.five.Board({
-                            id: boardId,
-                            port,
-                            repl,
-                            debug,
-                            timeout,
-                            io: ioPlugin ? new jfiveBoard.require(ioPlugin) : undefined
-                        }));
+                td.verify(new jfiveBoard.five.Board({
+                    id: boardId,
+                    port,
+                    repl,
+                    debug,
+                    timeout,
+                    io: ioPlugin ? new jfiveBoard.require(ioPlugin) : undefined
+                }));
 
-                        this._afterTest(jfiveBoard);
+                this._afterTest(jfiveBoard);
 
-                        return true;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return true;
             });
 
-            testWrap('event handlers should raise the correct custom events', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.elements(['connect', 'ready', 'exit', 'info', 'warn', 'fail', 'message']), (eventName) => {
-                        const jfiveBoard = this._beforeTest();
+            test('event handlers should raise the correct custom events', [jsc.elements(['connect', 'ready', 'exit', 'info', 'warn', 'fail', 'message'])], (eventName) => {
+                const jfiveBoard = this._beforeTest();
 
-                        let customEvent;
+                let customEvent;
 
-                        jfiveBoard.addEventListener(eventName, (event) => {
-                            customEvent = event;
-                        });
-
-                        jfiveBoard.Board[eventName]({
-                            eventName
-                        });
-
-                        const result = customEvent.type === eventName && customEvent.detail.eventName === eventName;
-                        this._afterTest(jfiveBoard);
-
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    }
-
-                    assert.equal(result, true);
-                    assert.end();
+                jfiveBoard.addEventListener(eventName, (event) => {
+                    customEvent = event;
                 });
+
+                jfiveBoard.Board[eventName]({
+                    eventName
+                });
+
+                const result = customEvent.type === eventName && customEvent.detail.eventName === eventName;
+                this._afterTest(jfiveBoard);
+
+                return result;
             });
 
             // this function builds a hierarchy of child nodes inside of a jfive-board component, emulating the structure of a real application
             // once the board is loaded into the DOM it should initialize all children by calling each child's boardReadyCallback
-            testWrap('static children should be initialized correctly', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nat(5), jsc.nat(5), (numChildrenPerLevel, numLevels) => {
-                        const jfiveBoard = this._beforeTest();
-                        this.removeChild(jfiveBoard); // remove jfiveBoard from the DOM so that we can control when the connectedCallback is invoked
-                        const jfiveBoardWithChildren = createChildHierarchy(jfiveBoard, numChildrenPerLevel, numLevels);
-                        this.appendChild(jfiveBoardWithChildren); // invoke the connectedCallback so that we can test to make sure that all children have been initialized
+            test('static children should be initialized correctly', [jsc.nat(5), jsc.nat(5)], (numChildrenPerLevel, numLevels) => {
+                const jfiveBoard = this._beforeTest();
+                this.removeChild(jfiveBoard); // remove jfiveBoard from the DOM so that we can control when the connectedCallback is invoked
+                const jfiveBoardWithChildren = createChildHierarchy(jfiveBoard, numChildrenPerLevel, numLevels);
+                this.appendChild(jfiveBoardWithChildren); // invoke the connectedCallback so that we can test to make sure that all children have been initialized
 
-                        const result = allChildrenInitialized(jfiveBoardWithChildren);
+                const result = allChildrenInitialized(jfiveBoardWithChildren);
 
-                        this._afterTest(jfiveBoardWithChildren);
+                this._afterTest(jfiveBoardWithChildren);
 
+                return result;
+
+                function allChildrenInitialized(element) {
+                    const children = Array.from(element.children);
+                    if (children.length === 0) return true;
+
+                    const allInitialized = children.reduce((result, child) => {
+                        if (!child.boardReadyCalled) return false;
                         return result;
+                    }, true);
 
-                        function allChildrenInitialized(element) {
-                            const children = Array.from(element.children);
-                            if (children.length === 0) return true;
+                    return allInitialized && children.reduce((result, child) => {
+                        const allInitialized = allChildrenInitialized(child);
+                        if (!allInitialized) return false;
+                        return result;
+                    }, true);
+                }
 
-                            const allInitialized = children.reduce((result, child) => {
-                                if (!child.boardReadyCalled) return false;
-                                return result;
-                            }, true);
-
-                            return allInitialized && children.reduce((result, child) => {
-                                const allInitialized = allChildrenInitialized(child);
-                                if (!allInitialized) return false;
-                                return result;
-                            }, true);
-                        }
-
-                        function createChildHierarchy(element, numChildrenPerLevel, numLevels) {
-                            if (numLevels === 0) {
-                                return element;
-                            }
-
-                            const children = new Array(numChildrenPerLevel).fill(null).map(() => {
-                                const child = document.createElement('div');
-                                child.boardReadyCallback = () => child.boardReadyCalled = true;
-                                return child;
-                            });
-
-                            const newElement = children.reduce((result, child) => {
-                                result.appendChild(child);
-                                return result;
-                            }, element);
-
-                            //TODO I would like to figure out how to do this with a map or reduce or such, making it more functional/declarative/recursive
-                            children.forEach((child) => {
-                                createChildHierarchy(child, numChildrenPerLevel, numLevels - 1);
-                            });
-
-                            return newElement;
-                        }
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    if (result !== true) {
-                        ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
+                function createChildHierarchy(element, numChildrenPerLevel, numLevels) {
+                    if (numLevels === 0) {
+                        return element;
                     }
 
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                    const children = new Array(numChildrenPerLevel).fill(null).map(() => {
+                        const child = document.createElement('div');
+                        child.boardReadyCallback = () => child.boardReadyCalled = true;
+                        return child;
+                    });
 
+                    const newElement = children.reduce((result, child) => {
+                        result.appendChild(child);
+                        return result;
+                    }, element);
+
+                    //TODO I would like to figure out how to do this with a map or reduce or such, making it more functional/declarative/recursive
+                    children.forEach((child) => {
+                        createChildHierarchy(child, numChildrenPerLevel, numLevels - 1);
+                    });
+
+                    return newElement;
+                }
             });
 
             //TODO thing about static versus dynamic children...light DOM, local DOM, etc...is there a difference between statically declared children and children added dynamically to the DOM?
@@ -433,36 +267,21 @@
             //     assert.end();
             // });
 
-            testWrap('info method passes parameters to Board info', (test, description, numTests) => {
-                test(description, (assert) => {
-                    const result = jsc.check(jsc.forall(jsc.nestring, jsc.nestring, jsc.elements([1, 'test', {
-                        test: 5
-                    }]), (theClass, message, details) => {
-                        const jfiveBoard = this._beforeTest();
+            test('info method passes parameters to Board info', [jsc.nestring, jsc.nestring, jsc.elements([1, 'test', {
+                test: 5
+            }])], (theClass, message, details) => {
+                const jfiveBoard = this._beforeTest();
 
-                        // jfiveBoard.Board = td.object(jfiveBoard.Board);
+                // jfiveBoard.Board = td.object(jfiveBoard.Board);
 
-                        console.log(jfiveBoard.Board);
+                console.log(jfiveBoard.Board);
 
-                        jfiveBoard.info(theClass, message, ...details);
-                        const result = td.verify(jfiveBoard.Board.info(theClass, message, ...details));
+                jfiveBoard.info(theClass, message, ...details);
+                const result = td.verify(jfiveBoard.Board.info(theClass, message, ...details));
 
-                        this._afterTest(jfiveBoard);
+                this._afterTest(jfiveBoard);
 
-                        return result;
-                    }), {
-                        tests: numTests
-                    });
-
-                    //TODO remove this once tape gives an indication of failed tests
-                    //TODO figure out how to abstract away talking to the main electron process
-                    // if (result !== true) {
-                    //     ipcRenderer.sendSync('kill-all-processes-unsuccessfully');
-                    // }
-
-                    assert.equal(result, true);
-                    assert.end();
-                });
+                return result;
             });
         }
 
