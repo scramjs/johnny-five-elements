@@ -133,7 +133,7 @@ http://arduinoguides.blogspot.com/2012/06/using-l239-motor-driver.html
 
 # Examples
 
-Here are some example applications written with JFive Web Components:
+Here are some example applications written with Johnny-Five Elements:
 
 * https://github.com/scramjs/web-copter
 
