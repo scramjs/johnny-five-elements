@@ -1,29 +1,20 @@
 {
-  "name": "jfive-web-components",
+  "name": "johnny-five-elements",
   "version": "0.0.10",
-  "description": "Web components for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
+  "description": "HTML custom elements for controlling hardware with the Johnny-Five JavaScript Robotics & IoT platform.",
   "scripts": {
-    "test": "npm run link && xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
-    "test-window": "npm run link && electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
-    "link": "npm link && npm link jfive-web-components"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/scramjs/jfive-web-components.git"
+    "test": "xvfb-run electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run",
+    "test-window": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --window",
+    "test-auto": "electron --enable-logging node_modules/scram-engine/main.js --entry-file test/index.html --auto-run"
   },
   "author": "Jordan Last <jordan.michael.last@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/scramjs/jfive-web-components/issues"
-  },
-  "homepage": "https://github.com/scramjs/jfive-web-components#readme",
   "dependencies": {
-    "johnny-five": "^0.11.1"
+    "johnny-five": "^0.14.1"
   },
   "devDependencies": {
-    "guesswork": "^0.1.1",
-    "scram-engine": "^0.6.1",
-    "sinon": "^2.2.0",
-    "testdouble": "^3.0.0"
+    "guesswork": "^0.7.3",
+    "scram-engine": "^0.7.6",
+    "sinon": "^4.4.8"
   }
 }

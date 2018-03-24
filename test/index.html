@@ -2,10 +2,8 @@
 
 <html>
     <head>
-        <base href="../">
-        <script src="zwitterion-config.js"></script>
-        <link rel="import" href="node_modules/guesswork/test-runner.html">
-        <link rel="import" href="test/jfive-board-test.html">
+        <script type="module" src="../node_modules/guesswork/test-runner.ts"></script>
+        <script type="module" src="jfive-board-test.js"></script>
     </head>
 
     <body>
@@ -17,7 +15,6 @@
             if (window.ELECTRON_CONSOLE_ARGUMENTS.autoRun) {
                 setTimeout(() => {
                     document.getElementById('testRunner').autoRun = true;
-                    document.getElementById('testRunner').runTests();
                 }, 5000);
             }
         </script>
