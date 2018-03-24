@@ -16,7 +16,7 @@ Here is the concept:
 </jfive-board>
 ```
 
-We are currently working to support the entire Johnny-Five API. See which elements have been implemented in the [Elements section](#Elements). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
+We are currently working to support the entire Johnny-Five API. See which elements have been implemented in the [Elements section](#elements). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
 
 For more background information, see the following resources:
 * [Universal Web Components article](https://scotch.io/bar-talk/universal-web-components)
