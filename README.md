@@ -1,8 +1,8 @@
 [![CircleCI](https://circleci.com/gh/scramjs/jfive-web-components.svg?style=shield)](https://circleci.com/gh/scramjs/jfive-web-components) [![npm version](https://img.shields.io/npm/v/jfive-web-components.svg?style=flat)](https://www.npmjs.com/package/jfive-web-components) [![dependency Status](https://david-dm.org/scramjs/jfive-web-components/status.svg)](https://david-dm.org/scramjs/jfive-web-components) [![devDependency Status](https://david-dm.org/scramjs/jfive-web-components/dev-status.svg)](https://david-dm.org/scramjs/jfive-web-components?type=dev)
 
-# JFive Web Components
+# Johnny-Five Elements
 
-Web components for controlling hardware with the [Johnny-Five JavaScript Robotics & IoT platform](http://johnny-five.io/). Build hardware declaratively with custom elements!
+HTML custom elements for controlling hardware with the [Johnny-Five JavaScript Robotics & IoT platform](http://johnny-five.io/). Build hardware declaratively!
 
 # Introduction
 
@@ -16,7 +16,7 @@ Here is the concept:
 </jfive-board>
 ```
 
-We are currently working to support the entire Johnny-Five API. See which components have been implemented in the [Components section](#components). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
+We are currently working to support the entire Johnny-Five API. See which elements have been implemented in the [Elements section](#Elements). We could also use your help. To see what needs working on go to the [What's Next? section](#whats-next).
 
 For more background information, see the following resources:
 * [Universal Web Components article](https://scotch.io/bar-talk/universal-web-components)
@@ -27,12 +27,12 @@ For more background information, see the following resources:
 # Installation
 
 ```bash
-npm install --save jfive-web-components
+npm install --save johnny-five-elements
 ```
 
 # Use
 
-These components can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine). Helpful instructions for specific devices are detailed below. Instructions for more devices may come in the future.
+These elements can be run on a variety of devices using [Scram.js](https://github.com/scramjs/scram-engine). Helpful instructions for specific devices are detailed below. Instructions for more devices may come in the future.
 
 ## Raspberry Pi
 
@@ -58,9 +58,9 @@ To understand which pins are available for use on the Raspberry Pi 3, use the fo
 http://blog.mcmelectronics.com/post/Raspberry-Pi-3-GPIO-Pin-Layout#.WIN1XvErL0o
 Documentation for more devices and pin layouts may come later.
 
-# Components
+# Elements
 
-All of the components listed below have been implemented with the properties, events, and methods described.
+All of the elements listed below have been implemented with the properties, events, and methods described.
 
 * [Board](#jfive-board)
 * [Button](#jfive-button)
